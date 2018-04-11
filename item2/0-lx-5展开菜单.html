@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				font-family: "微软雅黑";
+			}
+			ul{
+				list-style: none;
+			}
+			.nav{
+				width: 200px;
+				margin: 30px auto;
+			}
+			.nav li{
+				background-color: #dfe7ec;
+				cursor: pointer;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+			}
+			.nav li:hover{
+				background-color: #eee;
+			}
+			
+			.menu{
+				display: none;
+			}
+			.menu li{
+				background-color: #81B3EF;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var nav = document.getElementById("nav");
+				var aLi = nav.getElementsByClassName('slide');
+				var aUl = nav.getElementsByTagName('ul');
+//				alert(aLi.length);
+				for (var i = 0; i < aLi.length; i++) {
+					aLi[i].index = i;
+					aLi[i].onclick = function(){
+						if (aUl[this.index].style.display != 'block') {
+							for (var i = 0; i < aLi.length; i++) {
+								aUl[i].style.display = 'none';
+							}
+							aUl[this.index].style.display = 'block';
+						}else{
+							aUl[this.index].style.display = 'none';
+						}
+						
+					};
+				}
+			};
+		</script>
+		
+	</head>
+	<body>
+		<ul class="nav" id="nav">
+			<li class="slide">圣地亚哥1</li>
+			<ul class="menu">
+				<li>金坷垃1</li>
+				<li>金坷垃2</li>
+				<li>金坷垃3</li>
+				<li>金坷垃4</li>
+			</ul>
+			<li class="slide">圣地亚哥2</li>
+			<ul class="menu">
+				<li>金坷垃1</li>
+				<li>金坷垃2</li>
+				<li>金坷垃3</li>
+				<li>金坷垃4</li>
+			</ul>
+			<li class="slide">圣地亚哥3</li>
+			<ul class="menu">
+				<li>金坷垃1</li>
+				<li>金坷垃2</li>
+				<li>金坷垃3</li>
+				<li>金坷垃4</li>
+			</ul>
+			<li class="slide">圣地亚哥4</li>
+			<ul class="menu">
+				<li>金坷垃1</li>
+				<li>金坷垃2</li>
+				<li>金坷垃3</li>
+				<li>金坷垃4</li>
+			</ul>
+			<li class="slide">圣地亚哥5</li>
+			<ul class="menu">
+				<li>金坷垃1</li>
+				<li>金坷垃2</li>
+				<li>金坷垃3</li>
+				<li>金坷垃4</li>
+			</ul>
+			<li class="slide">圣地亚哥6</li>
+			<ul class="menu">
+				<li>金坷垃1</li>
+				<li>金坷垃2</li>
+				<li>金坷垃3</li>
+				<li>金坷垃4</li>
+			</ul>
+		</ul>
+		
+		
+	</body>
+</html>

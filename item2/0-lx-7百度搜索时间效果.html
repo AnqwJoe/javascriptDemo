@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 600px;
+				height: 110px;
+				background: linear-gradient(#096cc2,#66a6df);
+				text-align: center;
+				color: #fff;
+				font-size: 50px;
+				font-weight: bold;
+				line-height: 110px;
+			}
+			span{
+				color: brown;
+				font-size: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="box">
+			
+		</div>
+		
+		<script type="text/javascript">
+			var Box = document.getElementById("box");
+			
+			function run(){
+				var oDate = new Date();
+				var hours = oDate.getHours();
+				var minutes = oDate.getMinutes();
+				var seconds = oDate.getSeconds();
+				Box.innerHTML = hours+':'+minutes+' '+'<span>'+seconds+'</span>';
+			}
+			
+			setInterval(run,1000);
+			run();
+			
+		</script>
+	</body>
+</html>

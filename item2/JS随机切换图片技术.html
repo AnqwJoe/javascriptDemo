@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#btn{
+				position: absolute;
+				top: 500px;
+				left: 800px;
+				border: none;
+				background-color: #1DAEE9;
+				
+				padding: 15px;
+				color: #fff;
+				cursor: pointer;
+			}
+			img{
+				width: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<img src="img/001.jpg" id="Oimg">
+		<div id="Obtn">
+			<button id="btn">点击随机切换图片</button>
+		</div>
+		
+		<script type="text/javascript">
+			
+			btn.onclick = function(){
+			var picA = ['001.jpg','002.jpg','003.jpg','004.jpg','005.jpg'];
+			
+			var key = Math.floor(Math.random()*picA.length);
+			
+			var Rpic = picA[key];
+			
+			var Oimg = document.getElementById('Oimg');
+			var btn = document.getElementById('btn');
+				Oimg.src = 'img/'+Rpic;
+			}
+			
+		</script>
+	</body>
+</html>

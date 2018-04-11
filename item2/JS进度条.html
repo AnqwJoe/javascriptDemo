@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#main{
+				width: 100%;
+				height: 30px;
+				background-color: #ddd;
+				overflow: hidden;
+			}
+			#progress{
+				width: 0%;
+				height: 30px;
+				margin-top: 1px;
+				background-color: #aaf;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<div id="progress"></div>
+		</div>
+		<br />
+		<br />
+		<button id="btn">点击</button>
+		
+		<script type = "text/javascript">
+			var progress = document.getElementById("progress");
+			var btn = document.getElementById("btn");
+			btn.onclick = function(){
+				var pro = 0; //进度长度
+				var v = 1; //设置速度
+				var time = setInterval(function(){
+					pro += v;
+					if (pro >= 50) {    //当进度条大于50 速度加快
+						v = 3;
+					}
+					if (pro >= 100) {
+						clearInterval(time); //进度条满时清除定时器
+					}
+					progress.style.width = pro+'%';
+				},50)
+			};
+		</script>
+	</body>
+</html>

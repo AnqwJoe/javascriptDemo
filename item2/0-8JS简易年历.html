@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* { padding: 0; margin: 0; }
+			li { list-style: none; }
+			body { background: #f6f9fc; font-family: arial; }
+			
+			.calendar { width: 210px; margin: 0 auto; padding: 10px 10px 20px 20px; background:#ccc; }
+			.calendar ul { width: 210px; overflow: hidden; padding-bottom: 10px; }
+			.calendar li { float: left; width: 58px; height: 54px; margin: 10px 10px 0 0; border: 1px solid #fff; background: #424242; color: #fff; text-align: center; cursor: pointer; }
+			.calendar li h2 { font-size: 20px; padding-top: 5px; }
+			.calendar li p { font-size: 14px; }
+			
+			.calendar .active { border: 1px solid #424242; background: #fff; color: #e84a7e; }
+			.calendar .active h2 { }
+			.calendar .active p { font-weight: bold; }
+			
+			.calendar .text { width: 178px; padding: 0 10px 10px; border: 1px solid #fff; padding-top: 10px; background: #f1f1f1; color: #555; }
+			.calendar .text h2 {font-size: 14px; margin-bottom: 10px; }
+			.calendar .text p { font-size: 12px; line-height: 18px; }
+		</style>
+	</head>
+	<body>
+		<div id="tab" class="calendar">
+		    <ul>
+		        <li class="active"><h2>1</h2><p>JAN</p></li>
+		        <li><h2>2</h2><p>FER</p></li>
+		        <li><h2>3</h2><p>MAR</p></li>
+		        <li><h2>4</h2><p>APR</p></li>
+		        <li><h2>5</h2><p>MAY</p></li>
+		        <li><h2>6</h2><p>JUN</p></li>
+		        <li><h2>7</h2><p>JUL</p></li>
+		        <li><h2>8</h2><p>AUG</p></li>
+		        <li><h2>9</h2><p>SEP</p></li>
+		        <li><h2>10</h2><p>OCT</p></li>
+		        <li><h2>11</h2><p>NOV</p></li>
+		        <li><h2>12</h2><p>DEC</p></li>
+		    </ul>
+		    
+		    <div class="text">
+		        <h2>1月活动</h2>
+		        <p>过元旦了</p>
+		    </div>
+		</div>
+		
+	
+		<script type="text/javascript">
+			var aLi = document.getElementsByTagName('li');
+			var oText = document.getElementById('tab').getElementsByTagName('div')[0];
+			var aContent = [
+				'过元旦了',
+				'过年了',
+				'开学了',
+				'愚人节走一波',
+				'劳动节放假了',
+				'端午节',
+				'烧烤节',
+				'七夕秀恩爱吧',
+				'中秋来了',
+				'国庆节放假',
+				'双十一买买买',
+				'圣诞节狂欢'
+			];
+			
+			for (var i = 0; i < aLi.length; i++) {
+				
+				aLi[i].index = i;
+				aLi[i].onmouseover  = function(){
+					for (var i = 0; i < aLi.length; i++) {
+						aLi[i].className = '';
+					}
+					this.className = 'active';
+					
+					oText.innerHTML = '<h2>'+(this.index + 1)+'月活动</h2><p>'+aContent[this.index]+'</p>';
+				}
+			}
+		</script>
+	
+	</body>
+</html>

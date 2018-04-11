@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				font-size:12px;
+			}
+			a{
+				text-decoration: none;
+			}
+			.box{
+				width: 56px;
+				color: #00c;
+				text-align: center;
+				margin: 40px auto;
+			}
+			#btn{
+				height: 24px;
+				line-height: 24px;
+				cursor: pointer;
+			}
+			ul{
+				border: 1px solid #00c;
+			}
+			li a{
+				height: 24px;
+				line-height: 24px;
+				
+				display: block;
+			}
+			li a:hover{
+				background-color: lightcyan;
+			}
+			img{
+				float: right;
+				margin-top: 5px;
+			}
+			.up{
+				transform: rotate(180deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<p id="btn"><a href="#">输入法</a><img id="img" src="img/0-5-ico.gif" alt="" /></p>
+			<ul id="ul1">
+				<li><a href="#">手写</a></li>
+				<li><a href="#">拼音</a></li>
+				<li><a href="#">关闭</a></li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			var btn = document.getElementById("btn");
+			var img = document.getElementById("img");
+			var ul1 = document.getElementById("ul1");
+			var aLi = ul1.getElementsByTagName('li');
+			
+			btn.onclick = function(){
+				if(ul1.style.display == 'none'){
+					ul1.style.display = 'block';
+					
+				}else{
+					ul1.style.display = 'none';
+				}
+			}
+			
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].onclick = function(){
+					if (this.innerHTML == '<a href="#">关闭</a>') {
+						ul1.style.display = 'none';
+						btn.innerHTML = '<a href="#">输入法</a><img id="img" src="img/0-5-ico.gif" alt="" />';
+					}else{
+						btn.innerHTML = this.innerHTML + '<img id="img" src="img/0-5-ico.gif" alt="" />';
+						ul1.style.display = 'none';
+						
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

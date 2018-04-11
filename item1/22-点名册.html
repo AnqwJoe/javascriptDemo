@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+
+        }
+        #name{
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="begin">开始</button>
+    <button id="end">结束</button>
+    <div id="name">张三</div>
+
+    <script>
+        window.onload = function(){
+            var begin = document.getElementById('begin');
+            var end = document.getElementById('end');
+            var name = document.getElementById('name');
+
+            var nameArray = ['张三','李大侠','王麻子','金坷垃','卡哇伊','刘醒','烤面筋','吉安娜'];
+            var timer = null;
+
+            //name.innerText = nameArray[0];
+            begin.onclick = function(){
+                clearInterval(timer);
+
+                timer = setInterval(function(){
+                    //随机数
+                    var sIndex = parseInt(Math.random() * nameArray.length);
+
+                    var sName = nameArray[sIndex];
+                    name.innerText = sName;
+                },20)
+            }
+            end.onclick = function(){
+                clearInterval(timer);
+            }
+        }
+    </script>
+</body>
+</html>

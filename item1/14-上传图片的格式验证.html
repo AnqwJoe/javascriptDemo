@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <label>上传图片的格式验证：</label>
+    <input type="file" id="file" >
+    <span id="span"></span>
+    <script>
+        window.onload = function(){
+            var file = document.getElementById('file');
+            var span = document.getElementById('span');
+            //监听作用域的变化
+            file.onchange = function(){
+                //获取上传图片的路径
+                var path = this.value;
+                //console.log(path);
+
+                var suffix = path.substr(path.lastIndexOf('.'));
+                //用substr截取从点开始到结束的字符串并且赋值给suffix；
+
+                //统一转小写
+                var l_suffix = suffix.toLowerCase();
+                console.log(l_suffix);
+
+                if (l_suffix==='.jpg' || l_suffix==='.bmp' || l_suffix==='.gif') {
+                    span.innerHTML = '上传格式正确';
+                    span.style.color = 'red';
+                } else{
+                    alert('上传格式错误');
+                    span.innerHTML = '';
+                };
+
+            }
+        }
+    </script>
+</body>
+</html>

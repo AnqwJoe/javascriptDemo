@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width:100px;
+				height: 100px;
+				background-color: red;
+			}
+			.box{
+				width: 200px;
+				height: 200px;
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		
+		<script type="text/javascript">
+			var div1 = document.getElementById("div1");
+			div1.onmouseover = function(){
+				this.className = 'box';
+			};
+			div1.onmouseout = function(){
+				this.className = '';
+			};
+		</script>
+	</body>
+</html>

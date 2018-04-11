@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<style type="text/css" media="screen">
+    *{
+        margin: 0;
+        padding: 0;
+        list-style:none;
+    }
+    #box{
+        border: 1px solid gray;
+        width:400px;
+        height:80px;
+        padding-top: 403px; /* 可以留出3像素的间隙 */
+        margin:100px auto;
+
+        background: url('img/fj-1.jpg') no-repeat;
+    }
+
+    ul{
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        justify-content:center;
+        align-items:center;
+        cursor: pointer;
+    }
+    li img{
+        width: 80px;
+    }
+</style>
+<body>
+    <div id="box">  <!-- 把大图和小图写到一个盒子里，利用padding-top:200px，把大图放到背景里 -->
+        <ul>
+            <li><img src="img/fj-1.jpg" alt=""></li>
+            <li><img src="img/fj-2.jpg" alt=""></li>
+            <li><img src="img/fj-3.jpg" alt=""></li>
+            <li><img src="img/fj-4.jpg" alt=""></li>
+            <li><img src="img/fj-5.jpg" alt=""></li>
+        </ul>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var box = document.getElementById('box');
+            var aLi = document.getElementsByTagName('li');
+
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].index = i;
+                aLi[i].onmouseover = function(){
+                    box.style.background = "url('img/fj-"+ (this.index+1) +".jpg') no-repeat";
+                }
+            };
+        }
+    </script>
+</body>
+</html>

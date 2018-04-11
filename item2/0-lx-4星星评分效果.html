@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#pingfen{
+				width: 135px;
+				margin: 30px auto;
+				height: 28px;
+			}
+			#pingfen li{
+				width: 27px;
+				float: left;
+				height: 28px;
+				cursor: pointer;
+				list-style: none;
+				background: url(img/0-lx-4-star.gif) 0 0 no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="pingfen">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			
+			var score = document.getElementById("pingfen");
+			var aLi = score.getElementsByTagName('li');
+			
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].index = i;
+				
+				aLi[i].onmouseover = function(){
+					
+					for (var i = 0; i < aLi.length; i++) {
+						if (i <= this.index) {
+							aLi[i].style.background = 'url(img/0-lx-4-star.gif) 0 -29px no-repeat';
+						}else{
+							aLi[i].style.background = 'url(img/0-lx-4-star.gif) 0 0 no-repeat';
+						}
+					}
+				}
+				
+				aLi[i].onmouseout = function(){
+					for (var i = 0; i < aLi.length; i++) {
+						aLi[i].style.background = 'url(img/0-lx-4-star.gif) 0 0 no-repeat';
+					}
+				}
+				
+				aLi[i].onclick = function(){
+					alert('提交成功：'+(this.index + 1) + '分');
+				};
+				
+			}
+			
+			
+		</script>
+	</body>
+</html>

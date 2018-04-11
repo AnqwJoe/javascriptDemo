@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="ajax.js"></script>
+    <style type="text/css">
+        body{
+            margin: 0;
+        }
+        #ul1{
+            width: 1040px;
+            margin: 100px auto 0;
+        }
+        li{
+            width: 247px;
+            list-style:none;
+            float: left;
+            margin-right: 10px;
+        }
+        li div{
+            border:1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+
+        }
+        li img{
+            width: 225px;
+            display: block;
+
+        }
+    </style>
+    <script>
+        window.onload = function(){
+
+            var oUl = document.getElementById('ul1');
+            var aLi = oUl.getElementsByTagName('li');
+            var iLen = aLi.length;
+            var iPage = 1;
+            //定义一个门，初始是开的
+            var b = true;
+
+            getList();
+
+            //把AJAX封装一个函数,定义一个iPage页数，初始为第一页，先调用一次
+            function getList(){
+
+                //获取初始化数据
+                ajax('get','getPics.php','cpage=' + iPage,function(data){
+
+                    var data = JSON.parse(data);
+
+                    if(!data.length){
+                        //没有数据的情况
+                        return ;
+                    }
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        //获取高度最短的li
+                        var _index = getShort();
+
+                        var oDiv = document.createElement('div');
+                        var oImg = document.createElement('img');
+                        oImg.src = data[i].preview;
+                        //标出宽和高，防止定位先于加载 从而出现位置错误
+                        oImg.style.width = '225px';
+                        oImg.style.height = data[i].height * (225 / data[i].width);
+                        var oP = document.createElement('p');
+                        oP.innerHTML = data[i].title;
+                        oDiv.appendChild(oImg);
+                        oDiv.appendChild(oP);
+
+                        aLi[_index].appendChild(oDiv);
+
+                    }
+
+                    //加载完这一页再把门打开
+                    b == true;
+                });
+            }
+
+
+
+            //滚动事件触发
+            window.onscroll = function(){
+
+
+                var _index = getShort();
+                var oLi = aLi[_index];
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+                if(getTop(oLi)+ oLi.offsetHeight <document.documentElement.clientHeight + scrollTop){
+
+                    if(b){//如果门是开的，就把门关了，让下页展示
+                        b = false;
+                        iPage++;
+                        getList();
+                    }
+
+                }
+            }
+
+            //找到高度最低的那个li
+            function getShort(){
+                var index = 0;
+                var ih = aLi[index].offsetHeight; //当前第0个位置的li
+                for (var i = 1; i < iLen; i++) {
+                    if(aLi[i].offsetHeight < ih){ //如果第i个位置的高度比当前的小
+                        index = i;
+                        ih = aLi[i].offsetHeight;
+                    }
+                }
+                return index;
+            }
+
+            function getTop(obj){
+                var iTop = 0;
+                while(obj){
+                    iTop += obj.offsetTop;
+                    obj = obj.offsetParent;
+                }
+                return iTop;
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <ul id="ul1">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

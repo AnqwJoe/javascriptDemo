@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>126记住密码登录框</title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 50px;
+				background:#ffcc99 ;
+				border: 1px solid #ff9900;
+				display: none;
+				cursor:default;
+			}
+		</style>
+	</head>
+	<body>
+		<label for="check"><input type="checkbox" name="" id="check" value="" />自动登录</label>
+		<div id="div1">
+			不要在网吧等公共场合点击
+		</div>
+		
+		<script type="text/javascript">
+			var inPut = document.getElementsByTagName('label')[0];
+			var div1=document.getElementById('div1');
+			inPut.onmouseover=function(){
+				div1.style.display='block';
+			}
+			inPut.onmouseout=function(){
+				div1.style.display='none';
+			}
+		</script>
+	</body>
+</html>

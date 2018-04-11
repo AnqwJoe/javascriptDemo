@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        #time{
+            font-size: 30px;
+            text-align: center;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="time"></div>
+    <script>
+       /* 自定义时间
+
+        var currentDate = new Date();
+        var nextDate = new Date('2018/08/08 08:08:08'); 标准时间戳
+        var preDate = new Date('2017/08/08 08:08:08');*/
+
+        window.onload = function(){
+            var time = document.getElementById('time');
+
+            //自定义将来时间
+            var nextDate = new Date('2018/05/01 08:08:08');
+
+            //开启定时器
+            setInterval(runTime,1000);
+
+            function runTime(){
+                var currentDate = new Date();
+                //获取时间戳  从1970/1/1开始
+                var currentTime = currentDate.getTime();
+                var nextTime = nextDate.getTime();
+                //计算剩下的时间戳  二者间隔
+                var allTime = nextTime - currentTime;
+
+                /*换算公式
+                天数
+                var d = parseInt(second / 3600 / 24);
+                小时
+                var h = parseInt(second / 3600 % 24);
+                分钟
+                var m = parseInt(second / 60 % 60);
+                秒
+                var s = second % 60;*/
+
+                //毫秒转换秒
+                var allSecond = parseInt(allTime / 1000);
+
+                var d = size(parseInt(allSecond / 3600 / 24));
+                var h = size(parseInt(allSecond / 3600 % 24));
+                var m = size(parseInt(allSecond / 60 % 60));
+                var s = size(parseInt(allSecond % 60));
+
+                time.innerText = '距离放假还有' + d + '天' + h + '小时' + m + '分钟' + s + '秒';
+            }
+
+            //让页面没有1秒延迟，直接执行
+            runTime();
+
+            //10以内的添加0
+            function size(num){
+                return num >= 10 ? num : '0'+num;
+            }
+
+        }
+
+    </script>
+</body>
+</html>

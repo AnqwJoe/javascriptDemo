@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+
+        #box{
+            width:600px;
+            height: 600px;
+            background: url('img/clock.jpg') no-repeat;
+            margin:10px auto;
+            position: relative;
+
+        }
+        #hour,#minute,#second{
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 30px;
+            height: 600px;
+            margin-left: -15px;
+        }
+        #hour{
+            background: url(img/hour.png) no-repeat center center;
+        }
+        #minute{
+            background: url(img/minute.png) no-repeat center center;
+        }
+        #second{
+            background: url(img/second.png) no-repeat center center;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var hour = document.getElementById('hour');
+            var minute = document.getElementById('minute');
+            var second = document.getElementById('second');
+
+            //开启定时器
+            setInterval(function(){
+                //获取当前时间戳
+                var date = new Date();
+                //当前几时几分几秒几毫秒,多余的时分秒要转出来加上去
+                var mills = date.getMilliseconds();
+                var s = date.getSeconds() + mills/1000;
+                var m = date.getMinutes() + s/60;
+                var h = date.getHours() % 12; //表盘一圈12小时
+
+                //旋转
+                hour.style.transform = 'rotate('+h*30+'deg)';
+                minute.style.transform = 'rotate('+m*6+'deg)';
+                second.style.transform = 'rotate('+s*6+'deg)';
+
+            },10);
+        }
+    </script>
+</body>
+</html>

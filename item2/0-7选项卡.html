@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				font-family: "微软雅黑";
+			}
+			.nav{
+				width: 300px;
+				margin: 30px auto;
+			}
+			ul{
+				overflow: hidden;
+			}
+			li{
+				display: inline-block;
+				width: 100px;
+				box-sizing: border-box;
+				float: left;
+				height: 30px;
+				line-height: 30px;
+				color: #1F6299;
+				text-align: center;
+				border: 1px solid cornflowerblue;
+			}
+			a{
+				display: block;
+				color: #444444;
+				text-decoration: none;
+
+			}
+			
+			.content .box{
+				padding: 20px;
+				border: 1px solid skyblue;
+				display: none;
+			}
+			.active{
+				border: 1px solid darkblue;
+				background-color: lightblue;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav">
+			<ul>
+				<li class="active"><a href="#">圣地亚哥</a></li>
+				<li><a href="#">幻想乡</a></li>
+				<li><a href="#">新日暮里</a></li>
+			</ul>
+			<div class="content" id="content">
+				<div class="box" style="display: block;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo sit quod ipsa illo cum est esse quasi nesciunt facilis nam vitae dolorum quas provident quae iure commodi odit. Alias voluptatum.</div>
+				<div class="box">Eveniet inventore consequatur officiis itaque et harum odio atque corporis perspiciatis non voluptatem earum debitis ipsam quidem cupiditate alias maxime enim ab pariatur quis amet praesentium unde doloribus! Officia veritatis.</div>
+				<div class="box">Id praesentium ex numquam libero aspernatur quasi perspiciatis molestias quod nihil nesciunt nam minus fugit voluptates! Illum deserunt sit perferendis cum obcaecati sint alias ipsa earum dolor voluptatem eos natus.</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var oLi = document.getElementsByTagName('li');
+			var cont = document.getElementById("content");
+			var oDiv = cont.getElementsByTagName('div');
+			
+			for (var i = 0; i<oLi.length;i++) {
+				
+				oLi[i].index = i;
+				oLi[i].onmouseover = function(){
+						for (var i = 0; i < oLi.length; i++) {
+							oLi[i].className = '';
+							oDiv[i].style.display = 'none';
+						}
+					oDiv[this.index].style.display = 'block';
+					this.className = 'active';
+
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>选项卡</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+            font-family: '微软雅黑';
+        }
+
+        a{
+            text-decoration: none;
+            color:#444;
+        }
+
+        #tab{
+            width: 497px;
+            height: 120px;
+            border: 1px solid #ccc;
+            margin: 100px auto;;
+            overflow: hidden;
+
+        }
+
+        #tab_header{
+            background-color:#e8e8e8;
+            height: 28px;
+            line-height: 28px;
+        }
+
+        #tab_header ul{
+            width: 500px;
+            /* display:flex;
+            justify-content:space-around;
+            align-items:center; */
+        }
+        #tab_header ul li{
+            float: left;
+            width:98px;
+            text-align: center;
+            border-left: 1px solid #e8e8e8;
+            border-right: 1px solid #e8e8e8;
+            cursor: pointer;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #tab_header ul li.selected{
+            background-color: #fff;
+            border-bottom-color:#fff;
+            /* 给每一项加左右边框 */
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+
+            padding: 0;
+        }
+
+        /* 单独去掉第一项和最后一项的重复边框 */
+        #tab_header ul li:nth-child(1){
+            border-left: none;
+        }
+        #tab_header ul li:nth-last-child{
+            border-right: none;
+        }
+        #tab_header ul li:hover{
+            font-weight: bold;
+            color:orangered;
+        }
+
+        #tab_content{
+
+        }
+
+        #tab_content .dom{
+            padding-top: 20px;
+            display: none;
+
+        }
+        #tab_content .dom ul li{
+            float: left;
+            width: 220px;
+            text-align: center;
+            margin:5px;
+        }
+        #tab_content .dom ul li a:hover{
+            color:orangered;
+        }
+    </style>
+</head>
+<body>
+    <div id="tab">
+        <!-- 头部 -->
+        <div id="tab_header">
+            <ul>
+                <li class="selected">BILIBILI</li>
+                <li>USA</li>
+                <li>FANTASY</li>
+                <li>SKYRIM</li>
+                <li>MAPLE</li>
+            </ul>
+        </div>
+        <!-- 内容 -->
+        <div id="tab_content">
+            <div class="dom" style="display:block;">
+                <ul>
+                    <li><a href="#">金坷垃金坷垃</a></li>
+                    <li><a href="#">金坷垃金坷垃</a></li>
+                    <li><a href="#">金坷垃金坷垃</a></li>
+                    <li><a href="#">金坷垃金坷垃</a></li>
+                </ul>
+            </div>
+            <div class="dom">
+                <ul>
+                    <li><a href="#">圣地亚哥圣地亚哥</a></li>
+                    <li><a href="#">圣地亚哥圣地亚哥</a></li>
+                    <li><a href="#">圣地亚哥圣地亚哥</a></li>
+                    <li><a href="#">圣地亚哥圣地亚哥</a></li>
+                </ul>
+            </div>
+            <div class="dom">
+                <ul>
+                    <li><a href="#">幻想乡幻想乡</a></li>
+                    <li><a href="#">幻想乡幻想乡</a></li>
+                    <li><a href="#">幻想乡幻想乡</a></li>
+                    <li><a href="#">幻想乡幻想乡</a></li>
+                </ul>
+            </div>
+            <div class="dom">
+                <ul>
+                    <li><a href="#">雪漫城雪漫城</a></li>
+                    <li><a href="#">雪漫城雪漫城</a></li>
+                    <li><a href="#">雪漫城雪漫城</a></li>
+                    <li><a href="#">雪漫城雪漫城</a></li>
+                </ul>
+            </div>
+            <div class="dom">
+                <ul>
+                    <li><a href="#">勇士部落勇士部落</a></li>
+                    <li><a href="#">勇士部落勇士部落</a></li>
+                    <li><a href="#">勇士部落勇士部落</a></li>
+                    <li><a href="#">勇士部落勇士部落</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var aLi = $('tab_header').getElementsByTagName('li');
+            var aDom = $('tab_content').getElementsByClassName('dom');
+
+            // console.log(aLi,aDom);
+
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].index = i;
+
+                aLi[i].onmouseover = function(){
+                    for (var j = 0; j < aLi.length; j++) {
+                        aLi[j].className = '';
+                        aDom[j].style.display = 'none';
+                    };
+                    this.className = 'selected';
+                    aDom[this.index].style.display = 'block';
+                }
+            };
+        }
+
+        function $(id){
+            if (typeof id==='string') {
+                return document.getElementById(id);
+            } else{
+                return null;
+            };
+        }
+    </script>
+</body>
+</html>

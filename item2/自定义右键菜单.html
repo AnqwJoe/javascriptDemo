@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#ul1{
+				width: 50px;
+				background-color: #CCCCCC;
+				border: 1px solid #444;
+				list-style: none;
+				position: absolute;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="ul1">
+			<li>登陆</li>
+			<li>注册</li>
+			<li>注销</li>
+			<li>首页</li>
+			<li>后退</li>
+		</ul>
+		
+		<script type="text/javascript">
+			var ul1 = document.getElementById("ul1");
+			
+			document.oncontextmenu = function(ev){
+				var oEvent = ev||event;
+				ul1.style.display = 'block';
+				ul1.style.left = oEvent.clientX + document.body.scrollLeft + 'px';
+				ul1.style.top = oEvent.clientY + document.body.scrollTop + 'px';
+				
+				
+				return false;
+			}
+			
+			document.onclick = function(){
+				ul1.style.display = 'none';
+			}
+		</script>
+	</body>
+</html>

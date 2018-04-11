@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 100px;
+				height: 100px;
+				background-color: #CCCCCC;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" name="" id="btn1" value="向右移动" />
+		<input type="button" name="" id="btn2" value="停止移动" />
+		<div id="div1"></div>
+		
+		<script type="text/javascript">
+			var div1 = document.getElementById("div1");
+			var btn1 = document.getElementById("btn1");
+			var btn2 = document.getElementById("btn2");
+			var timer = null;
+			btn1.onclick = function(){
+				timer = setInterval(function(){
+					div1.style.left = div1.offsetLeft + 5 + 'px';
+				},30)
+			}
+			btn2.onclick = function(){
+				clearInterval(timer);
+			}
+		</script>
+	</body>
+</html>

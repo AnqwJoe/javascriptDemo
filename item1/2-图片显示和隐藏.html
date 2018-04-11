@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">隐藏</button>
+    <p></p>
+    <img src="img/1.jpg" alt="">
+
+    <script>
+        window.onload= function(){
+            //获取事件源
+            var btn = document.getElementById('btn');
+            var img = document.getElementsByTagName('img')[0];
+
+            btn.onclick = function(){
+                if(btn.innerHTML==='隐藏'){
+                    img.style.display = 'none';
+                    btn.innerHTML = '显示';
+                }else{
+                    img.style.display = 'block';
+                    btn.innerHTML = '隐藏';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

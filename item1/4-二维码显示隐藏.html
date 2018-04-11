@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css" media="screen">
+        *{margin: 0;padding: 0;list-style:none;}
+        #e_coder{
+            width: 50px;
+            height: 50px;
+            background: #ccc;
+            position: fixed;
+            top: 40%;
+            left: 0;
+            cursor:pointer;
+        }
+        #e_app{
+            width: 150px;
+            height: 150px;
+            background: pink;
+            position: absolute;
+            left: 50px;
+            top: -50px;
+            display: none;
+
+
+        }
+    </style>
+</head>
+<body>
+    <div id="e_coder">
+        <div id="e_app">
+            此处是二维码
+        </div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var eCoder = document.getElementById('e_coder');
+            var eApp = document.getElementById('e_app');
+
+            eCoder.onmouseover = function(){
+                eCoder.style.background = 'orange';
+                eApp.style.display = 'block';
+            };
+            eCoder.onmouseout = function(){
+                eCoder.style.background = '#ccc';
+                eApp.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

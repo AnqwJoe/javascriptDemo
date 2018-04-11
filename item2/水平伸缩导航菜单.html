@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.nav{
+			list-style:none; height:40px; border-bottom:5px solid #F60; margin-top:20px; padding-left:50px;
+		}
+		li{
+			float: left;
+		}
+		a{
+			text-decoration: none;
+			display: block;
+			height: 40px;
+			line-height: 40px;
+			width: 120px;
+			background-color: #CCCCCC;
+			margin-bottom: 1px;
+			text-align: center;
+			color: #333;
+		}
+		.active,a:hover{
+			color: #FFFFFF;
+			background-color: #f60;
+			height: 40px;
+			line-height: 40px;
+		}
+	</style>
+	<script type="text/javascript">//JQ方法
+		$(function(){
+			$('a').hover(
+				function(){$(this).stop().animate({'width':'160px'},150);},
+				function(){$(this).stop().animate({'width':'120px'},150);}
+			)
+		})
+	</script>
+	<!--JS方法
+		
+		<script type="text/javascript">
+		window.onload=function(){
+			var aA=document.getElementsByTagName('a');
+			for (var i=0;i<aA.length;i++) {
+				aA[i].onmouseover=function(){
+					clearInterval(time);
+					var This=this;
+					var time=setInterval(function(){
+						This.style.width=This.offsetWidth+8+'px';
+						if(This.offsetWidth>=160)clearInterval(time)
+					},30)
+				}
+				
+				aA[i].onmouseout=function(){
+					clearInterval(time);
+					var This=this;
+					var time=setInterval(function(){
+						This.style.width=This.offsetWidth-8+'px';
+						if(This.offsetWidth<=120){
+							This.style.width='120px';
+							clearInterval(time);
+						}
+					},30)
+				}
+			}
+		}
+	</script>-->
+</head>
+<body>
+	<ul class="nav">
+		<li><a href="#" class="active">首  页</a></li>
+		<li><a href="#">新闻快讯</a></li>
+		<li><a href="#">产品展示 </a></li>
+		<li><a href="#">售后服务</a></li>
+		<li><a href="#">联系我们</a></li>
+	</ul>
+</body>
+</html>

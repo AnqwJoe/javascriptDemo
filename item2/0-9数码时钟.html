@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body style="color:#eee;background: #990099; font-size: 45px;">
+		<img src="img/0-10-0.png" alt="" />
+		<img src="img/0-10-0.png" alt="" />
+		点
+		<img src="img/0-10-0.png" alt="" />
+		<img src="img/0-10-0.png" alt="" />
+		分
+		<img src="img/0-10-0.png" alt="" />
+		<img src="img/0-10-0.png" alt="" />
+		秒
+		
+	</body>
+	<script type="text/javascript">
+		
+		function toDouble(num){
+			if(num<10){
+				return '0'+num;
+			}else{
+				return ''+num;
+			}
+		}
+		
+		var btn1 = document.getElementById("btn1");
+		var aImg = document.getElementsByTagName('img');
+		
+		function updateTime(){
+			var oDate = new Date();
+			var str = toDouble(oDate.getHours())+toDouble(oDate.getMinutes())+toDouble(oDate.getSeconds());
+//			alert(str);
+			
+			for (var i = 0; i < aImg.length; i++) {
+				aImg[i].src = "img/0-10-"+str.charAt(i)+".png";
+			}
+		};
+		
+		setInterval(updateTime,1000);
+		updateTime();
+	</script>
+</html>

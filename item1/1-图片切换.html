@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <img id="banner" src="img/1.jpg" alt="">
+    <p></p>
+    <button id="prev">上一张</button>
+    <button id="next">下一张</button>
+
+    <script>
+        window.onload = function(){
+            var ban =  document.getElementById('banner');
+            var prev =  document.getElementById('prev');
+            var next =  document.getElementById('next');
+
+            //定义索引
+            var maxIndex = 6;
+            var minIndex = 1;
+            var curIndex = minIndex;
+
+            prev.onclick = function(){
+                if(curIndex == minIndex){ //边界值情况
+                    curIndex = maxIndex;
+                }else{ //正常情况
+                    curIndex --;
+                }
+
+                ban.setAttribute('src','img/'+ curIndex +'.jpg');
+
+            }
+
+            next.onclick = function(){
+                if(curIndex == maxIndex){ //边界值情况
+                    curIndex = minIndex;
+                }else{ //正常情况
+                    curIndex ++;
+                }
+
+                ban.setAttribute('src','img/'+ curIndex +'.jpg');
+            }
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+        div{
+            line-height: 0;
+            margin-bottom: 5px;
+        }
+        p{
+            color:orange;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 5px;
+        }
+        li{
+            float: left;
+            margin-right: 5px;
+            cursor:pointer;
+        }
+        li img{
+            width:76px;
+        }
+        li:last-child{
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+
+        <!-- 大图描述 -->
+        <p id="des">铁路</p>
+        <div>
+            <img src="img/fj-1.jpg" alt="铁路" id="img">
+        </div>
+
+        <!-- 小图列表 -->
+        <ul id="small">
+            <li>
+                <img src="img/fj-1.jpg" alt="铁路">
+            </li>
+            <li>
+                <img src="img/fj-2.jpg" alt="山谷">
+            </li>
+            <li>
+                <img src="img/fj-3.jpg" alt="城市">
+            </li>
+            <li>
+                <img src="img/fj-4.jpg" alt="天安门">
+            </li>
+            <li>
+                <img src="img/fj-5.jpg" alt="塔">
+            </li>
+        </ul>
+
+
+        <script>
+            window.onload = function(){
+                var des = document.getElementById('des');
+                var bImg = document.getElementById('img');
+
+                var ul = document.getElementById('small');
+                var list = ul.getElementsByTagName('img');
+
+                //绑定事件
+                for (var i = 0; i < list.length; i++) {
+                    //console.log(list[i]);
+                    list[i].onclick = function(){
+                        bImg.src = this.src;
+                        des.innerText = this.alt;
+                    }
+                };
+
+            }
+        </script>
+</body>
+</html>

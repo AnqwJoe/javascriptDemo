@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			function toDou(n){
+				
+				if(n<10){
+					return '0'+n;
+				}else{
+					return ''+n; //保证返回的是个字符串
+				}
+			}
+			
+			window.onload=function(){
+				var aImg=document.getElementsByTagName('img');
+				function tick(){
+					var oDate=new Date();
+					var str=toDou(oDate.getFullYear())+toDou(oDate.getMonth()+1)+toDou(oDate.getDate())+toDou(oDate.getHours())+toDou(oDate.getMinutes())+toDou(oDate.getSeconds());
+					
+					for (var i=0;i<aImg.length;i++) {
+						aImg[i].src='images/'+str.charAt(i)+'.png'; //charAt获取字符串，能解决兼容性问题
+					}
+				}
+				setInterval(tick,1000);
+				tick();
+			};
+		</script>
+	</head>
+	<body style="background:#0c0c67; font-size: 50px; color: #FFF; text-align: center; padding-top: 100px;">
+		<img src="images/0.png" alt="" />
+		<img src="images/0.png" alt="" />		
+		<img src="images/0.png" alt="" />		
+		<img src="images/0.png" alt="" />
+		年
+		<img src="images/0.png" alt="" />		
+		<img src="images/0.png" alt="" />		
+		月
+		<img src="images/0.png" alt="" />		
+		<img src="images/0.png" alt="" />		
+		日
+		<br />
+		<img src="images/0.png" alt="" />
+		<img src="images/0.png" alt="" />
+		:
+		<img src="images/0.png" alt="" />
+		<img src="images/0.png" alt="" />
+		:
+		<img src="images/0.png" alt="" />
+		<img src="images/0.png" alt="" />
+		
+	</body>
+</html>

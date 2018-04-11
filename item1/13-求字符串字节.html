@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = '张三';
+        var age = 18;
+
+        //number转string
+        console.log(typeof (age+''));
+        console.log(typeof age.toString());
+        console.log(typeof String(age));
+
+        //根据位置返回字符串
+        var str2 = 'A HELLO WORLD';
+        console.log(str2.charAt(10));//r
+        console.log(str2.charCodeAt(0));//65   返回Unicode字符集中的编码值
+        //Unicode所有语言通用编码的解决方案，融合了ASCII码和各种编码
+
+        //求字符串长度
+        var str3 = 'hello world!';
+        var str4 = '你好,世界!'
+        console.log(str3.length);//12
+        console.log(str4.length);//6
+
+        function getStrLength(STR){
+            var len = 0, code = 0;
+            for (var i = 0; i < STR.length; i++) { //汉字不在0-127之间
+                code = STR.charCodeAt(i);
+                //console.log(code);
+                //
+                if (code>=0 && code <= 127) {
+                    len +=1;
+                } else{
+                    len+=2;
+                }
+            };
+            return len;
+        }
+        console.log(getStrLength(str4)); //str4为10个字节
+    </script>
+</body>
+</html>

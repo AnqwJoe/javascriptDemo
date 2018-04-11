@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+            vertical-align:top;
+        }
+        body{
+            background:url('img/1.jpg') no-repeat ;
+            background-size:cover;
+        }
+        #box{
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        ul{
+            display:flex;
+            justify-content:space-around;
+            align-items:center;
+        }
+        ul li img{
+            width:180px;
+            margin:10px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li><img src="img/1.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+            <li><img src="img/3.jpg" alt=""></li>
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/5.jpg" alt=""></li>
+        </ul>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var aLi =document.getElementsByTagName('li');
+            var aImg = [];//先定义一个空数组
+
+            for (var i = 0; i < aLi.length; i++) {
+                aImg.push(aLi[i].childNodes[0]); //把每个li下的img都取出来，装到aImg这个数组里统一管理
+            };
+            //console.log(aImg);
+
+            for (var i = 0; i < aLi.length; i++) {
+
+
+                aImg[i].onclick = function(){
+                    document.body.style.background = "url("+this.src+") no-repeat" ;
+                    document.body.style.backgroundSize = "cover" ;
+                }
+            };
+
+        }
+    </script>
+</body>
+</html>

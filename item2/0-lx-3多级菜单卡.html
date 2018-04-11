@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				font-family: "微软雅黑";
+				box-sizing: border-box;
+			}
+			a{
+				color: #444444;
+				text-decoration: none;
+			}
+			
+			.nav{
+				list-style: none;
+				border-bottom: 2px blue solid;
+				overflow: hidden;
+			}
+			.nav li{
+				float: left;
+				position: relative;
+			}
+			.nav li:hover{
+				background-color: #f7f7f7;
+			}
+			.nav li a{
+				padding: 10px;
+				display: inline-block;
+				color: gray;
+			}
+			.card{
+				position: absolute;
+				top: 40px;
+				left: 0;
+
+				display: none;
+			}
+			
+			
+			.card-item{
+				width: 150px;
+				height: 400px;
+				background-color: #f7f7f7;
+				position: relative;
+				overflow: hidden;
+				border: 1px solid gray;
+			}
+			.card-item p{
+				width: 100%;
+				cursor: pointer;
+				padding: 10px;
+				
+			}
+			.card-item p:hover{
+				background-color: lightcyan;
+			}
+			.right{
+				width: 300px;
+				height: 248px;
+				background-color: #ccc;
+				position: absolute;
+				top: 45px;
+				border: 1px solid gray;
+				left: 140px;
+				display: none;
+			}
+			.right p{
+				display: block;
+				cursor: pointer;
+				padding: 10px;
+			}
+			.right p:hover{
+				background-color: #E9EDF2;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<ul class="nav" id="nav">
+			<li>
+				<a href="">所有分类</a>
+			</li>
+			<li>
+				<a href="">女装</a>
+			</li>
+			<li>
+				<a href="">手机数码</a>
+			</li>
+			<li>
+				<a href="">家居美食</a>
+			</li>
+			<div class="card" id="card">
+				<div class="card-item">
+					<p>数码家电</p>
+					<p>数码家电</p>
+					<p>数码家电</p>
+					<p>数码家电</p>
+					<p>数码家电</p>
+					<p>数码家电</p>
+					<p>数码家电</p>
+					<p>数码家电</p>
+				</div>
+			</div>	
+			<div class="right" id="right">
+				<p>运动鞋</p>
+				<p>运动鞋</p>
+				<p>运动鞋</p>
+				<p>运动鞋</p>
+				<p>运动鞋</p>
+				<p>运动鞋</p>
+			</div>
+		</ul>
+		<script type="text/javascript">
+			var nav = document.getElementById("nav");
+			var oLi = document.getElementsByTagName('li');
+			var card = document.getElementById("card");
+			var right = document.getElementById("right");
+			
+			for (var i = 0; i < oLi.length; i++) {
+				oLi[i].onmouseover= function(){
+					card.style.display = 'block';
+				}
+				oLi[i].onmouseout= function(){
+					card.style.display = 'none';
+				}
+			}
+			card.onmouseover = function(){
+				this.style.display = 'block';
+				right.style.display = 'block';
+			}
+			card.onmouseout = function(){
+				this.style.display = 'none';
+				right.style.display = 'none';
+				
+			}
+			right.onmouseover = function(){
+				this.style.display = 'block';
+				card.style.display = 'block';
+			}
+			right.onmouseout = function(){
+				this.style.display = 'none';
+				card.style.display = 'none';
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            font-family: '微软雅黑';
+        }
+        #prompt{
+            color: darkgray;
+            font-size: 13px;
+
+        }
+        #score{
+            border: 1px solid darkgray;
+            outline:none;
+        }
+
+        .right{
+            background:url('img/right.png') no-repeat 5px center;
+            -webkit-background-size: 15px 15px;
+            background-size: 15px 15px;
+            padding-left: 20px;
+            color:#25ae88 !important; /* 加了!improtant优先级可以大于ID */
+        }
+        .error{
+            background:url('img/error.png') no-repeat 5px center;
+            -webkit-background-size: 15px 15px;
+            background-size: 15px 15px;
+            padding-left: 20px;
+            color:#d75a4a !important;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <label>您的成绩：</label>
+        <input type="text" placeholder="请输入分数" id="score">
+        <span id="prompt">请输入您的成绩</span>
+    </div>
+
+    <script>
+        window.onload = function(){
+
+            $('score').onblur = function(){
+                var value = parseFloat($('score').value);
+                //console.log(value);
+                //验证
+                if (isNaN(value)) {  //非数字
+                    /*$('prompt').innerHTML = '输入成绩不正确';
+                    $('prompt').className = 'error';
+                    $('score').style.borderColor = '#d75a4a';*/
+                    dealStyle('输入成绩不正确','error','#d75a4a');
+
+                } else if(value>=0 && value<=100){  //合法验证
+                    /*$('prompt').innerHTML = '输入成绩正确';
+                    $('prompt').className = 'right';
+                    $('score').style.borderColor = '#25ae88';*/
+                    dealStyle('输入成绩正确','right','#25ae88');
+
+                }else{  //超出情况
+                    // $('prompt').innerHTML = '成绩在0-100之间';
+                    // $('prompt').className = 'error';
+                    // $('score').style.borderColor = '#d75a4a';
+                    dealStyle('成绩在0-100之间','error','#d75a4a');
+
+                }
+            }
+
+            //获得焦点后需要还原
+            $('score').onfocus = function(){
+                // $('prompt').innerHTML = '请输入您的成绩';
+                // $('prompt').className = '';
+                // $('score').style.borderColor = 'darkgray';
+                $('score').value = '';
+                dealStyle('请输入您的成绩','','darkgray');
+            }
+        }
+
+            function dealStyle(msg,classN,color){
+                $('prompt').innerHTML = msg;
+                $('prompt').className = classN;
+                $('score').style.borderColor = color;
+            }
+
+            function $(id){
+                if (typeof id==='string' ) {
+                    return document.getElementById(id);
+                } else{
+                    return null;
+                };
+            }
+
+    </script>
+</body>
+</html>

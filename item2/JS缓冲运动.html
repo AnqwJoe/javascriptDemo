@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>缓冲运动</title>
+<style>
+#div1 {width:100px; height:100px; background:red; position:absolute; left:600px; top:50px;}
+#div2 {width:1px; height:300px; background:black; position:absolute; left:300px; top:0;}
+</style>
+<script>
+window.onload = function(){
+    var btn = document.getElementById('btn1');
+    var oDiv = document.getElementById('div1');
+    var timer = null;
+
+    btn.onclick = function(){
+        startMove(300);
+    };
+
+    function startMove(iTarget){
+
+        clearInterval(timer);
+
+        timer = setInterval(function(){
+            var speed = (iTarget - oDiv.offsetLeft) / 10;
+            //但凡用到缓冲运动，一定要0+向上/0-向下取整
+            speed = speed>0?Math.ceil(speed) : Math.floor(speed);
+
+            oDiv.style.left = oDiv.offsetLeft+speed+'px';
+        },30);
+    }
+};
+</script>
+</head>
+
+<body>
+<input id="btn1" type="button" value="缓冲运动到300" />
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

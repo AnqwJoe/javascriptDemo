@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+    #div1{ width: 100px; height: 100px; background: green; position: absolute; filter:alpha(opacity:30); opacity: .3;}
+    #div2{ width: 100px; height: 100px; background: green; position: absolute; top: 120px;}
+    </style>
+    <script>
+
+
+        window.onload = function(){
+            var aDiv = document.getElementsByTagName('div');
+            aDiv[0].onmouseover = function(){
+                startMove(this,'opacity',100);
+            }
+            aDiv[0].onmouseout = function(){
+                startMove(this,'opacity',30);
+            }
+
+            aDiv[1].onmouseover = function(){
+                startMove(this,'width','200');
+            }
+            aDiv[1].onmouseout = function(){
+                startMove(this,'width','100');
+        }
+    }
+
+
+        //获取综合样式
+        function getStyle(obj,attr){
+            return obj.currentStyle? obj.currentStyle[attr] : window.getComputedStyle(obj,false)[attr];
+        }
+
+        //运动函数
+        function startMove(obj,attr,iTarget){
+            clearInterval(obj.timer);
+            obj.timer= setInterval(function(){
+                //定义一个变量用来存属性值
+                var iCur = 0;
+                //如果属性是透明度
+                if(attr == 'opacity'){
+                    iCur = parseInt(parseFloat(getStyle(obj,attr))*100);
+                }else{
+                    iCur = parseInt(getStyle(obj,attr));
+                }
+
+                //设定速度
+                var speed = (iTarget-iCur)/8;
+                speed = speed>0 ? Math.ceil(speed) : Math.floor(speed);
+
+                if (iTarget == iCur) {
+                    clearInterval(obj.timer);
+                } else{
+                    if (attr == 'opacity') {
+                        obj.style.opacity = (iCur+speed)/100;
+                        obj.style.filter = 'alpha(opacity:'+(iCur+speed)+')';
+                    } else{
+                        obj.style[attr] = iCur+speed+'px';
+                    }
+                }
+
+            },30)
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+</html>

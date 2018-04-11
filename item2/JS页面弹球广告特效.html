@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#main{
+				position: absolute;
+				top: 0;
+				left: 0;
+				cursor: pointer;
+			}
+			img{display: block;}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<img src="img/qq.png"/ id="Oimg">
+		</div>
+		
+		<script type="text/javascript">
+			var Oimg = document.getElementById("Oimg");
+			var main = document.getElementById("main");
+			var s_y = 0;
+			var v_y = 4;
+			var s_x = 0;
+			var v_x = 4;
+			
+			var imgH = 52;
+			var imgW = 50;
+			var winH = document.documentElement.clientHeight;
+			var winW = document.documentElement.clientWidth;
+			
+			function start(){
+				time = setInterval(function(){
+					s_y += v_y;	
+					s_x += v_x;
+				
+					//y轴运动
+					if (s_y <= 0) {       //到顶部时速度为正
+						v_y = -v_y;  
+					}
+				
+					if(s_y>=winH-imgH){   //到达底部时停止
+						v_y = -v_y;         //同时速度为负，朝上走
+						s_y = winH-imgH;
+					}
+				
+					//x轴运动
+				
+					if (s_x <= 0) {
+						v_x = -v_x;
+					}
+				
+					if (s_x >= winW-imgW) {
+						s_x = winW-imgW;
+						v_x = -v_x;
+					}
+					main.style.top = s_y+'px';
+					main.style.left = s_x+'px';
+				},30)
+			}
+			
+			start();
+			
+			main.onmouseover=function(){
+				clearInterval(time);
+			}
+			main.onmouseout=function(){
+				start();
+			}
+		</script>
+	</body>
+</html>

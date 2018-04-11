@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<textarea name="" id="text1" rows="10" cols="40"></textarea><br />
+		<input type="button" name="" id="btn1" value="运行" />
+		
+		<script type="text/javascript">
+			var text1 = document.getElementById("text1");
+			var btn1 = document.getElementById("btn1");
+			text1.value = 'abc';
+			
+			btn1.onclick=function(){
+				var newwin = window.open('about:blank');
+				newwin.document.write(text1.value);
+			}
+		</script>
+	</body>
+</html>

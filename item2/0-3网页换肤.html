@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/0-3-css1.css" id="link1" />
+	</head>
+	<body>
+		<dl id="message">	
+			<form>
+				<dt>
+					<strong>可以换肤的提交框：</strong>
+					<input type="button" id="btn1" value="皮肤1"/>
+					<input type="button" id="btn2" value="皮肤2"/>
+				</dt>
+				<dd>输入姓名：<input class="text" type="text" /></dd>
+				<dd>输入密码：<input class="text" type="password" /></dd>
+				<dd>请您留言：<textarea></textarea></dd>
+				<dd class="center"><input type="submit" class="btn" value="提交" /></dd>
+			</form>
+		</dl>
+		
+		<script type="text/javascript">
+			var btn1 = document.getElementById("btn1");
+			var btn2 = document.getElementById("btn2");
+			var _link = document.getElementById("link1");
+			
+			btn1.onclick = function(){
+				_link.href = 'css/0-3-css1.css';
+			};
+			btn2.onclick = function(){
+				_link.href = 'css/0-3-css2.css';
+			};
+		</script>
+	</body>
+</html>

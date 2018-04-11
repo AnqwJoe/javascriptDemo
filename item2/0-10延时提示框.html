@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 200px;
+				height: 130px;
+				background-color: red;
+			}
+			#div2{
+				width: 150px;
+				height: 120px;
+				background-color: #ccc;
+				display: none;
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<script type="text/javascript">
+			var div1 = document.getElementById("div1");
+			var div2 = document.getElementById("div2");
+			var timer = null;
+			
+			div1.onmouseover = div2.onmouseover = function(){
+				div2.style.display = 'block';
+				clearTimeout(timer);
+			}
+			div1.onmouseout = div2.onmouseout = function(){
+				timer = setTimeout(function(){
+					div2.style.display = 'none';
+				},400)
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style:none;
+        }
+        body{
+            text-align: center;
+            padding: 100px;
+        }
+        #pic{
+            display: none;
+        }
+        #time{
+            font-size: 100px;
+            color:orangered;
+        }
+    </style>
+</head>
+<body>
+    <div id="time">5</div>
+    <img src="img/flower.gif" alt="" id="pic">
+
+    <script>
+        window.onload = function(){
+            var time = document.getElementById('time');
+            var pic  = document.getElementById('pic');
+
+            var timer = setInterval(function(){
+                time.innerHTML -= 1;
+
+                //判断
+                if( time.innerHTML == 0){
+                    clearInterval(timer);
+
+                    time.style.display = 'none';
+                    pic.style.display = 'inline-block';
+                }
+            },1000);
+
+        }
+
+
+    </script>
+</body>
+</html>

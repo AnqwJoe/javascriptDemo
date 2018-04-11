@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+            font-family: '微软雅黑';
+        }
+        #top{
+            padding: 20px;
+        }
+
+        #bottom{
+            position: relative;
+        }
+        .box{
+            width: 180px;
+            height: 285px;
+            margin: 0 15px 15px 0;
+            background-color: #e8e8e8;
+        }
+        .box p:last-child{
+            font-size: 13px;
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="top">
+        <button>3列显示</button>
+        <button>4列显示</button>
+        <button>5列显示</button>
+    </div>
+
+    <div id="bottom">
+        <div class="box">
+            <img src="img/m (1).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (2).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (3).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (4).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (5).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (6).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (7).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (8).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (9).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (10).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (11).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (12).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (13).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (14).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+        <div class="box">
+            <img src="img/m (15).jpg" alt="">
+            <p>这里是剧名</p>
+            <p>这里是描述这里是描述</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var btns = document.getElementById('top').children;
+            var bottom = document.getElementById('bottom');
+
+            //监听按钮点击
+            btns[0].onclick = function(){
+                jFlex(3,bottom);
+            }
+            btns[1].onclick = function(){
+                jFlex(4,bottom);
+            }
+            btns[2].onclick = function(){
+                jFlex(5,bottom);
+            }
+
+            function jFlex(allCols,parentNode){
+                var boxW = 180, boxH = 285, marginXY = 15;
+
+                for (var i = 0; i < parentNode.children.length; i++) {
+                    var row = parseInt(i / allCols); //行取商
+                    var cols = parseInt(i % allCols); //列取余
+
+                    //盒子的定位
+                    var currentBox = parentNode.children[i];
+                    currentBox.style.position = 'absolute';
+                    currentBox.style.left = cols * (boxW + marginXY) +'px';
+                    currentBox.style.top = row * (boxH + marginXY) +'px';
+
+                };
+
+            }
+        }
+    </script>
+</body>
+</html>

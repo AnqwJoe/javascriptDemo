@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			body{
+				background-color: #eee;
+			}
+			.slide_module{
+				width: 120px;
+				height: 400px;
+				margin: 0 auto;
+				background-color: fff;
+				border: 1px solid #ccc;
+				position: relative;
+				top: 50px;
+			}
+			
+			.up,.down{
+				width: 30px;
+				height: 30px;
+				background-color: #81B3EF;
+				position: absolute;
+				margin-left: -15px;
+				left: 50%;
+				cursor: pointer;
+				opacity: 0.8;
+				font-weight: bold;
+				text-align: center;
+			}
+			.up{
+				top: 4px;
+			}
+			.down{
+				bottom: 4px;
+			}
+			
+			.warp{
+				width: 120px;
+				height: 330px;
+				position: absolute;
+				top: 35px;
+				left: 0;
+				overflow: hidden;
+			}
+			
+			ul{
+				width: 120px;
+				position: absolute;
+				left: 0;
+				top: 0px;
+			}
+			li{
+				width: 120px;
+				height: 110px;
+			}
+			li a{
+				width: 100px;
+				height: 100px;
+				background-color: #8A2BE2;
+				display: block;
+				margin: 0 auto;
+			}
+			li a:hover{
+				opacity: 0.7;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slide_module" id="lineSlide">
+			<div class="up" id="up">↑</div>
+			<div class="warp">
+				<ul>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+					<li><a href="#"></a></li>
+				</ul>
+			</div>
+			<div class="down" id="down">↓</div>
+		</div>
+		
+		<script type="text/javascript">
+			var line = document.getElementById("lineSlide");
+			var aUl = line.getElementsByTagName('ul')[0];
+			var up = document.getElementById("up");
+			var down = document.getElementById("down");
+			var speed = 0;
+			
+			aUl.innerHTML += aUl.innerHTML;
+			setInterval(function(){ 
+				if (aUl.offsetTop < -aUl.offsetHeight/2) {
+					aUl.style.top = 0;
+				} else if(aUl.offsetTop > 0){
+					aUl.style.top = -aUl.offsetHeight/2 + 'px'
+				}
+				
+				aUl.style.top = aUl.offsetTop + speed + 'px';
+			},30)
+			
+			up.onmousedown = function(){
+				speed = -3;
+			}
+			up.onmouseup = function(){
+				speed = 0;
+			}
+			down.onmousedown = function(){
+				speed = 3;
+			}
+			down.onmouseup = function(){
+				speed = 0;
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				font-size:12px;
+			}
+			
+			.box{
+				width: 56px;
+				color: #00c;
+				text-align: center;
+				margin: 40px auto;
+			}
+			#btn{
+				height: 24px;
+				line-height: 24px;
+				cursor: pointer;
+			}
+			ul{
+				border: 1px solid #00c;
+			}
+			li a{
+				height: 24px;
+				line-height: 24px;
+				text-decoration: none;
+				display: block;
+			}
+			li a:hover{
+				background-color: lightcyan;
+			}
+			img{
+				float: right;
+				margin-top: 5px;
+			}
+			.up{
+				transform: rotate(180deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<p id="btn">输入法<img id="img" src="img/0-5-ico.gif" alt="" /></p>
+			<ul id="ul1">
+				<li><a href="#">手写</a></li>
+				<li><a href="#">拼音</a></li>
+				<li><a href="#">关闭</a></li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			var btn = document.getElementById("btn");
+			var img = document.getElementById("img");
+			var ul1 = document.getElementById("ul1");
+			
+			btn.onclick = function(){
+				if(ul1.style.display == 'none'){
+					ul1.style.display = 'block';
+					img.className = '';
+					
+				}else{
+					ul1.style.display = 'none';
+					img.className = 'up';
+				}
+			}
+		</script>
+	</body>
+</html>

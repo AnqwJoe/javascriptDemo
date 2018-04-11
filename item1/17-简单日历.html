@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        #box{
+            width: 250px;
+            height: 300px;
+            background-color: orangered;
+            margin: 100px auto;
+            padding: 20px;
+        }
+        #box_top{
+            font-size: 23px;
+            color:#fff;
+            margin-bottom: 40px;
+            text-align: center;
+
+        }
+        #box_bottom{
+            width: 90%;
+            background-color: orange;
+            height: 70%;
+            margin:0 auto;
+            font-size: 100px;
+            color: #fff;
+            display: flex;
+            justify-content:center;
+            align-items:center;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="box_top"></div>
+        <div id="box_bottom"></div>
+    </div>
+    <script>
+        window.onload = function(){
+            var date = new Date();
+            var y = date.getFullYear();
+            var m = date.getMonth()+1;
+            var d = date.getDate();
+            var week = date.getDay();
+
+            var weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+
+            $('box_top').innerText = y + '年' + m + '月' + d +'日' + weeks[week];
+            $('box_bottom').innerText = d;
+
+        }
+
+        function $(id){
+            if (typeof id === 'string') {
+                return document.getElementById(id);
+            } else{
+                return null;
+            };
+        }
+    </script>
+</body>
+</html>

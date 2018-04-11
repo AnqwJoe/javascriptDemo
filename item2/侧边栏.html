@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS运动——分享到</title>
+    <style>
+    *{padding: 0; margin: 0;}
+    #div1{ width: 150px; height: 200px; background: #ccc; position: absolute; left: -150px;}
+    #div1 span{ width: 20px; height: 60px; line-height: 20px; background: #8E91FF; color: #fff; position: absolute; top: 70px; right: -20px;
+        cursor: pointer;
+    }
+    </style>
+    <script>
+    // 方法一：传一个参数(iTarget)
+    /*window.onload = function(){
+        var oDiv = document.getElementById('div1');
+        var timer = null;
+
+        oDiv.onmouseover = function(){
+            startMove(0);
+        };
+
+        oDiv.onmouseout = function(){
+            startMove(-150);
+        };
+
+        function startMove(iTarget){
+            var oDiv = document.getElementById('div1');
+
+            clearInterval(timer);
+
+            timer = setInterval(function(){
+                var speed = 0;
+
+                oDiv.offsetLeft > iTarget ? speed = -10 : speed = 10;
+
+                if(oDiv.offsetLeft == iTarget){
+                    clearInterval(timer);
+                }else{
+                    oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+                }
+            },30);
+        };
+    };*/
+
+    // 方法二：传两个参数(speed,iTarget)
+    window.onload = function(){
+        var oDiv = document.getElementById('div1');
+        var timer = null;
+
+        oDiv.onmouseover = function(){
+            startMove(15,0);
+        };
+
+        oDiv.onmouseout = function(){
+            startMove(-15,-150);
+        };
+
+        function startMove(speed,iTarget){
+            var oDiv = document.getElementById('div1');
+            clearInterval(timer);
+            timer = setInterval(function(){
+                // 判断oDiv距离左边的距离是否等于目标点
+                if(oDiv.offsetLeft == iTarget){
+                    clearInterval(timer);
+                }else{
+                    oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+                }
+            },30);
+        };
+    };
+    </script>
+</head>
+<body>
+    <div id="div1"><span>分享到</span></div>
+</body>
+</html>

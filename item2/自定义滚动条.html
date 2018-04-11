@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#parent{
+				width: 600px;
+				height: 20px;
+				background: #CCCCCC;
+				position: relative;
+				margin: 10px auto;
+			}
+			#div1{
+				width: 20px;
+				height: 20px;
+				background: red;
+				position: absolute;
+				left: 0;top: 0;
+			}
+			#div2{
+				width: 400px;
+				height: 300px;
+				border: 1px solid black;
+				overflow: hidden;
+				position: relative;
+			}
+			#div3{
+				position: absolute;
+				left: 0;top: 0;
+				padding: 20px;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload=function(){
+				var oDiv=document.getElementById('div1');
+				var oDiv2=document.getElementById('div2');
+				var oDiv3=document.getElementById('div3');
+				var oParent=document.getElementById('parent');
+				var disX=0;
+				oDiv.onmousedown=function(ev){
+					var oEvent=ev||event;
+					disX=oEvent.clientX-oDiv.offsetLeft;
+
+					document.onmousemove=function(ev){
+						var oEvent=ev||event;
+						var l=oEvent.clientX-disX;
+						
+						if(l<0)
+						{
+							l=0;
+						}else if(l>oParent.offsetWidth-oDiv.offsetWidth){
+							l=oParent.offsetWidth-oDiv.offsetWidth;
+						}
+						
+						oDiv.style.left=l+'px';
+						
+						var scale=l/(oParent.offsetWidth-oDiv.offsetWidth);
+						document.title=scale;
+						
+						oDiv3.style.top=-scale*(oDiv3.offsetHeight-oDiv2.offsetHeight)+'px';
+					};
+					
+					document.onmouseup=function(){
+						document.onmousemove=null;
+						document.onmouseup=null;
+					};
+					return false;
+				};
+			};
+			
+		</script>
+	</head>
+	<body>
+		<div id="parent">
+			<div id="div1"></div>
+		</div>
+		<div id="div2">
+			<div id="div3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet iure sit minima dignissimos repellat doloremque necessitatibus nulla quae et tenetur eum nisi qui dolorum quidem culpa similique dolores soluta temporibus!</div>
+		</div>
+	</body>
+</html>

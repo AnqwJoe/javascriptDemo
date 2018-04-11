@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			ul{
+				list-style: none;
+			}
+			a{
+				color: #444444;
+				text-decoration: none;
+			}
+			
+			
+			#nav{
+				height: 40px;
+				width: 400px;
+				background-color: #4AAFE9;
+				margin: 0 auto;
+			}
+			#nav li{
+				float: left;
+				height: 40px;
+				cursor: pointer;
+				line-height: 40px;
+				text-align: center;
+				position: relative;
+				margin-right: 5px;
+			}
+			li .title{
+				display: inline-block;
+				padding: 0 10px;
+			}
+			#nav li .slider{
+				position: absolute;
+				top: 50px;
+				width: 280px;
+				}
+			.slider a{
+				float: left;
+				padding: 0 10px;
+				border: 1px solid cornflowerblue;
+			}
+			.active{
+				background-color: #ADD8E6;
+			}
+			.s1{
+				display: none;
+			}
+			.s2{
+				display: none;
+			}
+			.s3{
+				display: none;
+			}
+			.s4{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="nav">
+			<ul>
+				<li>
+					<a href="#" class="title active">圣地亚哥</a>
+					<span class="slider s1">
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+					</span>
+				</li>
+				<li>
+					<a href="#" class="title">幻想乡</a>
+					<span class="slider s2">
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+					</span>
+				</li>
+				<li>
+					<a href="#" class="title">金坷垃</a>
+					<span class="slider s3">
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+					</span>
+				</li>
+				<li>
+					<a href="#" class="title">更衣室</a>
+					<span class="slider s4">
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+						<a href="#">项目一</a>
+					</span>
+				</li>
+				
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			var nav = document.getElementById("nav");
+			var aLi = nav.getElementsByTagName('ul')[0].getElementsByTagName('li');
+			var aA = [];
+			var aSpan = [];
+			var timer = null;
+			
+			for (var i = 0; i < aLi.length; i++) {
+				aA.push(aLi[i].getElementsByTagName('a')[0]);
+				aSpan.push(aLi[i].getElementsByTagName('span')[0]);
+			}
+			
+			for (var i = 0; i < aLi.length; i++) 
+			{
+				aLi[i].index = i;
+				aLi[i].onmouseover = function(){
+					if(timer){
+						clearTimeout(timer);
+						timer = null;
+					}
+					for (var i = 0; i < aLi.length; i++) {
+						aA[i].className = 'title';
+						aSpan[i].style.display = 'none';
+					}
+					
+					aA[this.index].className = 'title active';
+					aSpan[this.index].style.display = 'block';
+				};
+				
+				aLi[i].onmouseout = function(){
+					 
+					timer = setTimeout(function(){
+						aSpan[index].style.display = 'none';
+						timer = null;
+					},1000);
+				};
+				
+				
+			}
+			
+		</script>
+	</body>
+</html>

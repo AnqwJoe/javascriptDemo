@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+
+        #panel{
+            width: 400px;
+            box-shadow: 0 0 10px #000;
+            margin: 100px auto;
+            padding: 20px;
+        }
+
+        .panel-header{
+            text-align: center;
+            margin-bottom:10px;
+        }
+        .panel-footer{
+            text-align: center;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="panel">
+        <section class="panel-header">
+            <h2>歌曲排行榜</h2>
+            <hr>
+        </section>
+        <section class="panel-content">
+            <input type="checkbox" name="" value=""> 1.时间都去哪了<br />
+            <input type="checkbox" name="" value=""> 2.海阔天空<br />
+            <input type="checkbox" name="" value=""> 3.真的爱你<br />
+            <input type="checkbox" name="" value=""> 4.不再犹豫<br />
+            <input type="checkbox" name="" value=""> 5.光辉岁月<br />
+            <input type="checkbox" name="" value=""> 6.喜欢你<br />
+            <input type="checkbox" name="" value=""> 7.偏偏喜欢你<br />
+            <input type="checkbox" name="" value=""> 8.爱拼才会赢<br />
+            <input type="checkbox" name="" value=""> 9.老街<br />
+        </section>
+        <section class="panel-footer">
+            <hr>
+            <button id="allSel">全选</button>
+            <button id="cancelSel">取消选中</button>
+            <button id="reverseSel">反选</button>
+        </section>
+    </div>
+
+<script>
+    window.onload = function(){
+
+        var inputs = document.querySelectorAll('input');
+        var aBtn = document.getElementsByTagName('button');
+
+        //全选
+        aBtn[0].onclick = function(){
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].checked = true;
+            }
+        };
+        //取消选中
+        aBtn[1].onclick = function(){
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].checked = false;
+            }
+
+        };
+        //反选
+        aBtn[2].onclick = function(){
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].checked = !inputs[i].checked;
+            }
+
+        };
+
+
+       /* function $(id){
+            return typeof id === 'String' ? document.getElementById(id) : null;
+        }*/
+    }
+</script>
+
+</body>
+</html>

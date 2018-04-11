@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;list-style:none;font-family: '微软雅黑';}
+        #box{
+            width: 800px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            padding: 20px;
+        }
+
+        #mytext{
+            width: 100%;
+            height: 120px;
+            display: block;
+        }
+
+        .box-top{
+            margin:0 auto 20px;
+            display: block;
+            width: 640px;
+        }
+
+        #ul{
+            margin: 0 80px;
+        }
+        #ul li{
+            border-bottom: 1px dashed #ccc;
+            color: red;
+            line-height: 44px;
+        }
+        #ul li a{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="box-top">
+            <label for='mytext'>发表评论：</label>
+            <textarea id="mytext" cols="60" rows="10"></textarea>
+            <button id="btn">发表</button>
+        </div>
+        <ul id="ul">
+
+        </ul>
+
+        <script>
+            window.onload = function(){
+                $('btn').onclick = function(){
+                    var content = $('mytext').value;
+
+                    //如果文本框为空，则弹出窗口
+                    if (content.length === 0) {
+                        alert('请输入评论内容~');
+                        return;
+                    }
+
+                    //创建li
+                    var li = document.createElement('li');
+
+                    //把内容放到Li里
+                    li.innerHTML = content+'<a href="javascript:;">删除</a>';
+                    //$('ul').appendChild(li);
+
+                    //把li插到ul内的头部
+                    $('ul').insertBefore(li,$('ul').children[0]);
+
+                    //清除输入框内容
+                    $('mytext').value = '';
+
+                    //删除评论
+                    var as = $('ul').getElementsByTagName('a');
+
+                    for (var i = 0; i < as.length; i++) {
+                        as[i].onclick = function(){
+                            // this.parentNode.parentNode.removeChild(this.parentNode);
+                            this.parentNode.remove();
+                        }
+                    };
+                }
+
+
+
+                function $(id){
+                    if (typeof id==='string') {
+                        return document.getElementById(id);
+                    } else{
+                        return null;
+                    };
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
