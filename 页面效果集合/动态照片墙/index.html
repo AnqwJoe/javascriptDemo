@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src=underscore.js></script>
+
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+            border:none;
+        }
+
+        html,body,ul{
+            width: 100%;
+            height: 100%;
+        }
+        img{
+            vertical-align:top;
+        }
+
+        #ps{
+            position: relative;
+        }
+        #ps li{
+            width: 250px;
+            height: 360px;
+            box-shadow:0 0 10px #000;
+            position: absolute;
+            transition:all 0.6s ease-in;
+        }
+        /* 因为JS添加的动态样式都是行间的，优先级比class高，所以要加!important */
+        #ps li.current{
+            left:50% !important;
+            top: 50% !important;
+            -webkit-transform: rotate(0deg) translate(-50%,-50%) scale(1.5,1.5) !important;
+               -moz-transform: rotate(0deg) translate(-50%,-50%) scale(1.5,1.5) !important;
+                -ms-transform: rotate(0deg) translate(-50%,-50%) scale(1.5,1.5) !important;
+                 -o-transform: rotate(0deg) translate(-50%,-50%) scale(1.5,1.5) !important;
+                    transform: rotate(0deg) translate(-50%,-50%) scale(1.5,1.5) !important;
+            z-index: 99 !important;
+
+        }
+    </style>
+</head>
+<body>
+    <ul id="ps">
+    </ul>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            var ps = document.getElementById('ps');
+
+            //动态创建li
+            for (var i = 0; i < 9; i++) {
+
+                var li = document.createElement('li');
+                ps.appendChild(li);
+
+                var img = document.createElement('img');
+                img.src = 'img/pic'+(i+1)+'.jpg';
+                li.appendChild(img);
+            };
+
+            var aLi = ps.children;
+
+            //求出屏幕宽高
+            var screenW = document.documentElement.clientWidth - 250;
+            var screenH = document.documentElement.clientHeight - 360;
+
+            for (var j = 0; j < aLi.length; j++) {
+
+                //随机分布
+                aLi[j].style.left = _.random(0,screenW) + 'px';
+                aLi[j].style.top = _.random(0,screenH) + 'px';
+                //随机角度
+                aLi[j].style.transform = 'rotate('+_.random(0,360)+'deg)';
+
+                //监听点击事件
+                aLi[j].onclick = function(){
+                    for (var i = 0; i < aLi.length; i++) {
+                        aLi[i].className = '';
+                    };
+                    this.className = 'current';
+                }
+            };
+        }
+    </script>
+
+</body>
+</html>

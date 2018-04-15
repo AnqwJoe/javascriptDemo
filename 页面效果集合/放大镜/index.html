@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>放大镜</title>
+		<script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#move{
+				float: left;
+				width: 150px;
+				height: 150px;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			#shadow{
+				width: 30px;
+				height: 30px;
+				background: rgba(255,239,157,0.5);
+				position: absolute;
+				left: 0;
+				top: 0;
+				cursor: pointer;
+				display: none;
+			}
+			
+			#bigbox{
+				width: 300px;
+				height: 300px;
+				float: left;
+				overflow: hidden;
+				position: relative;
+			}
+			#big{
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="clearfix">
+			<div id="move">
+				<img src="yinru/mayuyu-large.jpg" id="small" width="150px" height="150"/>
+				<div id="shadow"></div>
+			</div>
+			<div id="bigbox">
+				<img src="yinru/mayuyu-large.jpg" id="big" width="1500" height="1500" />
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			
+			//鼠标移入到左侧区域
+			$('#move').on('move mousemove',function(event){
+				var moveLeft = $(this).offset().left;
+				var moveTop = $(this).offset().top;
+				var pageLeft = event.pageX;
+				var pageTop = event.pageY;
+				var x = pageLeft - moveLeft -15;
+				var y = pageTop - moveTop -15;
+				
+				if (x<0) {
+					x=0;
+				}else if(x>150){
+					x=150;
+				}
+				
+				if(y<0){
+					y=0;
+				}else if(y>150){
+					y=150;
+				}
+				
+				$('#shadow').css({
+					'display':'block',
+					'left':x + 'px',
+					'top':y +'px'
+				});
+				$('#big').css({
+					'display':'block',
+					'left':-x*10 + 'px',
+					'top':-y*10 + 'px'
+				});
+				
+			})
+			
+			//鼠标从左侧移出，效果消失
+			$('#move').on('move mouseleave',function(){
+				$('#shadow').css({
+					'display':'none'
+				});
+				$('#big').css({
+					'display':'none'
+				});
+			})
+			
+			
+		</script>
+	</body>
+</html>
