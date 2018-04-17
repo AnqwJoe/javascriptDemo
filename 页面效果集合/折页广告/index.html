@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+
+        a{
+            font-size: 16px;
+            text-decoration: none;
+            color:#666;
+        }
+
+        div{
+            width: 300px;
+            margin:20px auto;
+        }
+
+        #list li{
+            height: 40px;
+            line-height: 40px;
+            background-color: #efefef;
+            text-indent:1em;
+            margin-bottom: 3px;
+            overflow: hidden;
+            cursor: pointer;
+            transition:height 0.4s ease;
+        }
+
+        #list li img{
+            width:300px;
+            height: 200px;
+        }
+
+        /* 鼠标移开时又会恢复第一个 */
+        #list li:nth-child(1){
+            height:240px;
+            background: #03a9f4;
+        }
+        #list li:nth-child(1) a{
+            color:#fff;
+        }
+
+        /* 排他思想，先把所有的菜单合起来 */
+        #list:hover li{
+            height: 40px;
+            background: #efefef;
+        }
+        #list:hover li a{
+            color:#666;
+        }
+        /* 然后单独展开移入的那个 */
+        #list li:hover{
+            height:240px;
+            background: #03a9f4;
+        }
+        #list li:hover a{
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul id="list">
+            <li><a href="#">风景1</a><img src="img/1.jpg" alt="" /></li>
+            <li><a href="#">风景2</a><img src="img/2.jpg" alt="" /></li>
+            <li><a href="#">风景3</a><img src="img/3.jpg" alt="" /></li>
+            <li><a href="#">风景4</a><img src="img/4.jpg" alt="" /></li>
+            <li><a href="#">风景5</a><img src="img/5.jpg" alt="" /></li>
+        </ul>
+    </div>
+</body>
+</html>
