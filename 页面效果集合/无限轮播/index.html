@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+        img{
+            vertical-align:top;
+        }
+
+        #slider{
+            width: 750px;
+            height: 320px;
+            border: 1px solid #ccc;
+            padding:10px;
+            margin:100px auto;
+            position: relative;
+        }
+
+        #top{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        #top ul{
+            width: 4500px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #top ul li{
+            float: left;
+            width: 750px;
+            height: 320px;
+
+        }
+
+        #slider ol{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+
+        }
+        #slider ol li{
+            width: 20px;
+            height: 20px;
+            background-color: darkgray;
+            border-radius:50%;
+            display: inline-block;
+            cursor: pointer;
+            margin-right: 3px
+        }
+        #slider ol li.current{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="slider">
+        <div id="top">
+            <ul id="ul">
+                <li><img src="img/pic01.jpg" alt="" /></li>
+                <li><img src="img/pic02.jpg" alt="" /></li>
+                <li><img src="img/pic03.jpg" alt="" /></li>
+                <li><img src="img/pic04.jpg" alt="" /></li>
+                <li><img src="img/pic05.jpg" alt="" /></li>
+            </ul>
+        </div>
+        <ol id="ol"><!--
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li> -->
+        </ol>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = function(){
+
+            var aLi = $('ul').children;
+            var currentIndex = 0;
+            var indicatorIndex = 0;
+
+            //克隆li标签
+            $('ul').appendChild(aLi[0].cloneNode(true));
+
+            //动态创建页码, 数量为图片减一
+            for (var i = 0; i < aLi.length - 1; i++) {
+                var aPage = document.createElement('li');
+                $('ol').appendChild(aPage);
+            };
+
+            //第一个选中
+            $('ol').children[0].className = 'current';
+
+            var aList = $('ol').children;
+            for (var j = 0; j < aList.length; j++) {
+                //解决同步异步加入闭包执行
+                (function(j){
+
+                    aList[j].onmouseover = function(){
+                        for (var i = 0; i < aList.length; i++) {
+                            aList[i].className = '';
+                        }
+
+                        this.className = 'current';
+
+                        constant($('ul'),-(750 * j),100);
+
+                        currentIndex = j;
+                        indicatorIndex = j;
+                    };
+                })(j)
+            };
+
+            //自动轮播
+            var timer = setInterval(autoPlay,1000);
+
+            $('slider').onmouseover = function(){
+                clearInterval(timer);
+            }
+            $('slider').onmouseout = function(){
+                timer = setInterval(autoPlay,1000);
+            }
+
+
+            function autoPlay(){
+
+                //ul滚起来
+
+                currentIndex++;
+
+                //临界值处理
+                if (currentIndex > aLi.length - 1) {
+                    $('ul').style.left = 0;
+                    currentIndex = 1;
+                };
+                constant($('ul'),-currentIndex * 750, 100);
+
+                //原点动起来
+                indicatorIndex++;
+                if(indicatorIndex > aList.length - 1){
+                    indicatorIndex = 0;
+                }
+                for (var i = 0; i < aList.length; i++) {
+                            aList[i].className = '';
+                        }
+
+                aList[indicatorIndex].className = 'current';
+
+            }
+
+
+
+
+        }
+
+
+        function $(id){
+            if(typeof id == 'string'){
+                return document.getElementById(id);
+            }else{
+                return null;
+            }
+        }
+
+        function constant(obj,target,speed){
+            //清除定时器
+            clearInterval(obj.timer);
+
+            //判断方向
+            speed = obj.offsetLeft < target ? speed : -speed;
+
+
+            //设置定时器
+            obj.timer = setInterval(function(){
+                obj.style.left = obj.offsetLeft + speed + 'px';
+
+                if (Math.abs(target-obj.offsetLeft) < Math.abs(speed)) {
+
+                    clearInterval(obj.timer);
+                    obj.style.left = target + 'px';
+                }
+            },20)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            vertical-align:top;
+        }
+        #box{
+            width: 1023px;
+            height: 400px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        ul{
+            list-style:none;
+        }
+        #banner{
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+        #point{
+            position: absolute;
+            right:20px;
+            bottom:20px;
+            z-index: 99;
+        }
+
+        #point li{
+            width: 8px;
+            height: 8px;
+            background-color:#eee;
+            border-radius:50%;
+            border:2px solid #444;
+            float: left;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        #point li.active{
+            background-color:#444;
+            -webkit-transform: scale(1.2);
+               -moz-transform: scale(1.2);
+                -ms-transform: scale(1.2);
+                 -o-transform: scale(1.2);
+                    transform: scale(1.2);
+        }
+
+        #prev,#next{
+            width: 40px;
+            height: 70px;
+            background-color: #444;
+            opacity:0.3;
+            position: absolute;
+            top:50%;
+            margin-top: -35px;
+            cursor: pointer;
+            font-size: 50px;
+            cursor:#fff;
+            line-height: 70px;
+            text-align: center;
+            transition:0.6s;
+        }
+        #prev:hover,#next:hover{
+            opacity:0.8;
+        }
+
+        #prev{
+            left:30px;
+        }
+        #next{
+            right:30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="box">
+        <ul id="banner">
+            <li><img src="img/1.jpg" alt="" /></li>
+            <li><img src="img/2.jpg" alt="" /></li>
+            <li><img src="img/3.jpg" alt="" /></li>
+            <li><img src="img/4.jpg" alt="" /></li>
+            <li><img src="img/5.jpg" alt="" /></li>
+        </ul>
+        <ul id="point">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <span id="prev">&lt;</span>
+        <span id="next">&gt;</span>
+    </div>
+
+
+    <script type="text/javascript">
+        window.onload = function(){
+            var box = document.getElementById('box');
+            var aImg = document.getElementById('banner').getElementsByTagName('li');
+            var aPoint = document.getElementById('point').getElementsByTagName('li');
+            var prev = document.getElementById('prev');
+            var next = document.getElementById('next');
+            var timer = '';
+
+            var number = 0;
+
+            prev.onclick = function(){
+                if(number==0){
+                    number = 4;
+                }else{
+                    number--;
+                }
+                run(number);
+            }
+
+            next.onclick = function(){
+                if(number==4){
+                    number = 0;
+                }else{
+                    number++;
+                }
+                run(number);
+            };
+
+            for (var i = 0; i < aImg.length; i++) {
+                aPoint[i].index = i;
+                aPoint[i].onclick = function(){
+                    number = this.index;
+                    run(number);
+                }
+            };
+
+
+            box.onmouseover = function(){
+                clearInterval(timer);
+            };
+
+            box.onmouseout = function(){
+                timer = setInterval(function(){
+                    next.onclick();
+                },1000)
+            }
+
+
+            timer = setInterval(function(){
+                next.onclick();
+            },1000)
+
+            function run(x){
+                for (var i = 0; i < aImg.length; i++) {
+                    aImg[i].style.display = 'none';
+                    aPoint[i].className = '';
+                }
+                    aImg[x].style.display = 'block';
+                    aPoint[x].className = 'active';
+            }
+
+        }
+    </script>
+</body>
+</html>
