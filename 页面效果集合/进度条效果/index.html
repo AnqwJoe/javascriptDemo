@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+            border:none;
+        }
+
+        #progress{
+            width: 1000px;
+            height: 35px;
+            line-height: 35px;
+            /* background-color: #e8e8e8; */
+            margin:100px auto;
+
+            position: relative;
+
+        }
+
+        #progress_bar{
+            width: 900px;
+            height: 100%;
+            background-color: #ccc;
+            border-radius:8px;
+            position: relative;
+
+        }
+
+        #progress_value{
+            position: absolute;
+            right:30px;
+            top:0;
+
+        }
+
+        #progress_bar_fg{
+            width: 0;
+            height: 100%;
+            background-color: orangered;
+            border-top-left-radius:8px;
+            border-bottom-left-radius:8px;
+        }
+        span{
+            width: 25px;
+            height: 50px;
+            background-color: orangered;
+            position: absolute;
+            left: 0px;
+            top: -7px;
+            border-radius:5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="progress">
+        <div id="progress_bar">
+            <div id="progress_bar_fg"></div>
+            <span class="mask"></span>
+        </div>
+        <div id="progress_value">0%</div>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = function(){
+
+            var progress = document.getElementById('progress');
+            var progressBar = progress.children[0];
+            var progressValue = document.getElementById('progress_value');//右侧数字
+            var progressBarFg = progressBar.children[0];//背景
+            var mask = progressBar.children[1];//滑块
+
+            //鼠标按下
+            mask.onmousedown = function(event){
+                event = event || window.event;
+
+                //获取初始位置
+                var offsetLeft = event.clientX - mask.offsetLeft; //求得是距离左侧不变的距离
+
+                //监听鼠标移动
+                document.onmousemove = function(event){
+                    event = event || window.event;
+
+                    //获取移动位置
+                    var x = event.clientX - offsetLeft; //鼠标的位置-初始的位置
+
+                    //边界值处理
+                    if(x < 0){
+                        x = 0;
+                    }else if(x >= progressBar.offsetWidth - mask.offsetWidth){
+                        x = progressBar.offsetWidth - mask.offsetWidth;
+                    }
+
+                    mask.style.left = x + 'px';
+                    progressBarFg.style.width = x + 'px';
+
+                    progressValue.innerHTML = parseInt(x / (progressBar.offsetWidth - mask.offsetWidth)*100) + '%';
+
+                    return false;
+                };
+
+                //监听鼠标抬起
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                };
+            }
+
+        }
+    </script>
+</body>
+</html>

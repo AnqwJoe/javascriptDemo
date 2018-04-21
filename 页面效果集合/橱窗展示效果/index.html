@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+            border:none;
+        }
+
+        #box{
+            width: 800px;
+            height: 200px;
+            border: 1px solid #ccc;
+
+            position: relative;
+            margin:100px auto;
+            overflow: hidden;
+
+        }
+
+        #box ul{
+            width: 2600px;
+            position: absolute;
+            left: 0;
+            top: 20px;
+        }
+
+        #box ul li{
+            float: left;
+            cursor: pointer;
+        }
+
+        #box_bottom{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-color: #e8e8e8;
+            width: 100%;
+            height: 25px;
+        }
+
+        /* 动态获取滑块的宽度，所以初始不设置宽度 */
+        #box_bottom .mask{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 25px;
+            background-color: orangered;
+            border-radius:12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="box_top">
+            <li><img src="img/img1.jpg" alt="" /></li>
+            <li><img src="img/img2.jpg" alt="" /></li>
+            <li><img src="img/img3.jpg" alt="" /></li>
+            <li><img src="img/img4.jpg" alt="" /></li>
+            <li><img src="img/img5.jpg" alt="" /></li>
+            <li><img src="img/img6.jpg" alt="" /></li>
+            <li><img src="img/img7.jpg" alt="" /></li>
+            <li><img src="img/img8.jpg" alt="" /></li>
+            <li><img src="img/img3.jpg" alt="" /></li>
+            <li><img src="img/img7.jpg" alt="" /></li>
+            <li><img src="img/img1.jpg" alt="" /></li>
+            <li><img src="img/img2.jpg" alt="" /></li>
+            <li><img src="img/img3.jpg" alt="" /></li>
+            <li><img src="img/img4.jpg" alt="" /></li>
+            <li><img src="img/img5.jpg" alt="" /></li>
+            <li><img src="img/img6.jpg" alt="" /></li>
+            <li><img src="img/img7.jpg" alt="" /></li>
+            <li><img src="img/img8.jpg" alt="" /></li>
+            <li><img src="img/img3.jpg" alt="" /></li>
+            <li><img src="img/img7.jpg" alt="" /></li>
+        </ul>
+        <div id="box_bottom">
+            <span class="mask"></span>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            //获取需要的标签
+
+            var box = document.getElementById('box');
+            var boxTop = document.getElementById('box_top');
+            var boxBottom = document.getElementById('box_bottom');
+            var mask = boxBottom.children[0];
+
+
+            //动态设置滚动条长度
+            //换算公式
+            // 滚动条的长度 / 盒子的长度 = 盒子的长度 / 内容的长度
+            var maskLen = (box.offsetWidth / boxTop.offsetWidth) * box.offsetWidth;
+            mask.style.width = maskLen + 'px';
+
+            //鼠标操作
+            mask.onmousedown = function(event){
+                var event = event || window.event;
+
+                //初始值
+                var beginX = event.clientX - mask.offsetLeft;
+                //移动
+                document.onmousemove = function(event){
+                    var event = event || window.event;
+
+                    //求出移动的距离
+                    var endX = event.clientX - beginX;
+                    //解决边界值
+                    if(endX < 0){
+                        endX = 0;
+                    }else if(endX >= boxBottom.offsetWidth - mask.offsetWidth){
+                        endX = boxBottom.offsetWidth - mask.offsetWidth;
+                    }
+
+                    mask.style.left = endX + 'px';
+
+                    var contentLen = (boxTop.offsetWidth - box.offsetWidth) /(box.offsetWidth - mask.offsetWidth) * endX;
+
+                    boxTop.style.left = -contentLen + 'px';
+
+                    return false;
+
+                }
+            }
+
+            mask.onmouseup = function(){
+                document.onmousemove = null;
+
+            }
+
+        }
+    </script>
+</body>
+</html>
