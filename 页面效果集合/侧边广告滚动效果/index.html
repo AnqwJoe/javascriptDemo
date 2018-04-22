@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+
+        #aside{
+            width: 150px;
+            position: absolute;
+            left: 0;
+            top: 150px;
+        }
+        #aside img{
+            width: 100%;
+        }
+        p{
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px
+        }
+    </style>
+</head>
+<body>
+    <div id="aside">
+        <img src="img/float.jpg" alt="">
+    </div>
+
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+    <p>这里是填充文字</p>
+
+    <script type="text/javascript">
+        window.onload = function(){
+
+            //获取广告头部高度
+            var aside = document.getElementById('aside');
+            var offsetTop = aside.offsetTop;
+
+            //窗口滚动
+            var begin = 0;
+            var end = 0;
+            var timer = null;
+            window.onscroll = function(){
+
+                //清除定时器
+                clearInterval(timer);
+
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                //console.log(scrollTop);
+
+                end = Math.round(offsetTop + scrollTop);
+
+                //缓动动画
+                timer = setInterval(function(){
+                    begin += Math.round((end - begin) * 0.2);
+                    aside.style.top = begin + 'px';
+
+                    //清除定时器，防止出现小数无限叠加
+                    console.log(begin,end);
+
+                    if(Math.floor(begin) == end){
+                        clearInterval(timer);
+                    }
+                },20);
+
+            }
+
+
+        }
+    </script>
+</body>
+</html>

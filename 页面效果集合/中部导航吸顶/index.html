@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>吸顶导航</title>
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        body{
+            text-align: center;
+
+        }
+        img{
+            vertical-align:top;
+            width: 100%;
+        }
+
+        section{
+            width: 70%;
+            margin:0 auto;
+        }
+
+        .nav{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <header id="head">
+        <img src="img/top.png" alt="">
+    </header>
+
+    <nav id="nav">
+        <img src="img/nav.png" alt="">
+    </nav>
+
+    <section>
+        <img src="img/body01.png" alt="">
+        <img src="img/body02.png" alt="">
+    </section>
+
+
+    <script type="text/javascript">
+
+        window.onload = function(){
+            //求出offsetHeight
+            var nav = document.getElementById('nav');
+            var navTopHeight = nav.offsetTop;
+
+            window.onscroll = function(){
+                var scrollTopHeight = scroll().top;
+
+                //判断
+                if(scrollTopHeight >= navTopHeight){
+                    nav.className = 'nav';
+                }else{
+                    nav.className = '';
+                }
+            }
+        }
+
+
+        function scroll(){
+            if(window.pageYOffset !== null){
+                return {
+                    top:window.pageYOffset,
+                    left:window.pageXOffset,
+                }
+            }else if(document.compatMode === 'CSS1Compat'){//严格模式，遵循W3C标准
+                return {
+                    top:document.documentElement.scrollTop,
+                    left:document.documentElement.scrollLeft,
+                }
+            }else{
+                return {
+                    top : document.body.scrollTop,
+                    left : document.body.scrollLeft,
+                }
+            }
+        }
+    </script>
+</body>
+</html>
