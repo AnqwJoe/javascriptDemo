@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css" media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        body{
+            background-color: #eee;
+        }
+
+        p{
+            margin-bottom: 20px;
+        }
+
+        #top{
+            width: 43px;
+            height: 43px;
+            background: url('img/top.png') no-repeat;
+            position: fixed;
+            right: 10px;
+            bottom: 30px;
+            cursor: pointer;
+            background-size: 100% 100%;
+            display: none;
+
+        }
+    </style>
+</head>
+<body>
+    <span id="top"></span>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+    <p>今天天气很好</p>
+
+    <script type="text/javascript">
+    window.onload = function(){
+        var top = document.getElementById('top');
+        var scrollTop;
+        var begin = 0;
+        var end = 0;
+
+        window.onscroll = function(){
+            scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            scrollTop > 100 ? show(top) : hide(top);
+            begin = scrollTop;
+        };
+
+        var timer = null;
+        top.onclick = function(){
+            clearInterval(timer);
+            //开启缓动动画
+            timer = setInterval(function(){
+                begin += (end - begin) /20;
+                window.scrollTo(0,begin);
+
+                //清除定时器
+                if (Math.round(begin) === end) {
+                    clearInterval(timer);
+                };
+
+                console.log(begin,end);
+
+
+            },20)
+        }
+
+
+
+
+
+        function show(obj){
+            return obj.style.display = 'block';
+        }
+        function hide(obj){
+            return obj.style.display = 'none';
+        }
+
+
+    }
+    </script>
+</body>
+</html>

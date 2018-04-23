@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        html,body{
+            width: 100%;
+            height: 500%;
+        }
+
+        #panel{
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity:0.4;
+            filter:alpha(opacity:40);
+
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            display: none;
+
+        }
+        #login{
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+            border-radius:5px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -150px;
+
+            display: none;
+
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">立即登录</button>
+    <div id="panel"></div>
+    <div id="login"></div>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            var btn = document.getElementById('btn');
+            var panel = document.getElementById('panel');
+            var login = document.getElementById('login');
+
+            btn.onclick = function(event){
+
+                //阻止冒泡
+                if (event && event.stopPropagation) {
+                    event.stopPropagation();
+                }else{
+                    window.event.cancelBubble();
+                }
+
+                panel.style.display = 'block';
+                login.style.display = 'block';
+
+                //隐藏滚动条
+                document.body.style.overflow = 'hidden';
+            }
+
+            document.onclick = function(event){
+                var e  = event || window.event;
+
+                //获取点击的事件源
+                var targetId = e.target.id;
+
+                if (targetId !== 'login') {
+                    panel.style.display = 'none';
+                    login.style.display = 'none';
+
+                    //显示滚动条
+                    document.body.style.overflow = 'auto';
+                }else{
+                    window.location.href = 'http://www.github.com/AnqwJoe';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

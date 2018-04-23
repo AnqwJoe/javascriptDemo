@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        window.onload = function(){
+            change();
+
+            var bgColor;
+
+            window.onresize = change;
+
+            function change(){
+                var clientW= window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+                if(clientW >= 960){
+                    bgColor = 'red';
+                }else if(clientW >= 640){
+                    bgColor = 'blue';
+                }else{
+                    bgColor = 'green';
+                }
+
+                document.body.style.backgroundColor = bgColor;
+            }
+        }
+    </script>
+</body>
+</html>

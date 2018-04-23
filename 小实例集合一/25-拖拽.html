@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 300px;
+            height: 200px;
+            background-color: yellowgreen;
+            cursor: pointer;
+            position: absolute;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <script type="text/javascript">
+        window.onload = function(){
+
+            var disX,disY;
+            box.onmousedown = function(ev){
+                var oEvent = ev ||event;
+                disX = oEvent.clientX - box.offsetLeft;
+                disY = oEvent.clientY - box.offsetTop;
+                document.onmousemove = function(ev){
+                    var oEvent = ev ||event;
+                    var x = oEvent.clientX - disX;
+                    var y = oEvent.clientY - disY;
+
+                    //边界处理
+                    if ( x < 0) {
+                        x = 0;
+                    }else if(x > document.documentElement.clientWidth - box.offsetWidth ){
+                        x = document.documentElement.clientWidth - box.offsetWidth;
+                    }
+                    if ( y < 0) {
+                        y = 0;
+                    }else if(y > document.documentElement.clientHeight - box.offsetHeight ){
+                        y = document.documentElement.clientHeight - box.offsetHeight;
+                    }
+
+                    box.style.left = x + 'px';
+                    box.style.top = y + 'px';
+                };
+            };
+
+            box.onmouseup = function(){
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+
+            return false;
+        }
+    </script>
+</body>
+</html>
