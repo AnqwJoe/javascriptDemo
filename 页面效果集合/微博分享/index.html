@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        p{
+            margin:100px;
+            width: 300px;
+        }
+
+        #share_text{
+            background-color: skyblue;
+            width: 150px;
+            position: absolute;
+
+            display: none;
+            color:purple;
+        }
+    </style>
+</head>
+<body>
+    <p id="word">
+        随手关灯 电力资源不浪费
+
+　　由于疏忽大意或觉得麻烦，很多人在生活中常常忘记关灯或关闭电源。目前我们生活中用的电，60%依靠燃烧煤炭，每发1度电就要燃烧400克煤炭。燃烧煤炭，不仅消耗地球资源，还会产生大量的一氧化碳、二氧化硫、二氧化氮和粉尘，严重污染环境。养成随手关灯小习惯，对于不用的电子设备，及时拔掉电源，既能省电，也能保护自然资源。
+
+　　绿色低碳出行 环保又健康
+
+　　这几年，绿色低碳出行理念深入人心。在日常生活中，假如你是有车一族，在条件允许的情况下，可以多尝试步行或骑自行车或乘坐公共交通工具出行，减少使用机动车。在天气晴好的时候，大家也可以多去户外骑车、健步走等，既锻炼了身体，放松了身心，也降低了能耗。
+
+　　节约用纸 让森林更多更茂盛
+
+　　日常工作、生活中，纸张的消耗惊人。我们都知道，纸是由树木制成的，纸张消耗越多，树木的数量减少就越多。节约用纸从点滴做起，如打印文件可以双面；用过的纸张可以反面利用；合理用纸，拒绝过量使用（如抽纸、厕纸等）；衣服口袋里装块手帕，减少纸巾使用等。
+
+　　少用塑料袋 保护土壤和大气
+
+　　塑料袋对土壤的污染不言而喻。保护地球环境，我们应减少塑料袋的使用，出门常备布兜或可重复利用的购物袋。同时，尽量少使用一次性的东西（如一次性碗、筷、杯子）。
+    </p>
+
+    <div id="share_text">地球环境，我们应减少塑料袋的使用</div>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            var word = document.getElementById('word');
+            var shareText = document.getElementById('share_text');
+            word.onmouseup = function(event){
+                var e = event || window.event;
+
+                //获取选中的文字
+                var selectedText;
+                if(window.getSelection){//标准浏览器
+                    selectedText = window.getSelection().toString();
+                }else{//IE
+                    selectedText = document.selection.createRange().text;
+                }
+
+                if(selectedText !== ''){
+                    shareText.innerText = selectedText;
+                    shareText.style.display = 'block';
+
+                    //改变位置
+                    shareText.style.left = e.clientX + 'px';
+                    shareText.style.top = e.clientY + 'px';
+                }
+
+
+
+            };
+
+            document.onmousedown = function(event){
+                var e = event || window.event;
+
+                var targetId = e.target ? e.target.id : e.srcElement.id;
+
+                //判断
+                if(targetId !== 'shareText'){
+                    shareText.style.display = 'none';
+                }
+
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+            }
+        }
+    </script>
+</body>
+</html>
