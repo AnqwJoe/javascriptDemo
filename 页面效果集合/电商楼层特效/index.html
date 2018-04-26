@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style:none;
+        }
+
+        html,body,ul{
+            width: 100%;
+            height: 100%;
+        }
+
+        #ol{
+            width: 80px;
+            background-color:#ccc;
+            position: fixed;
+            left:50px;
+            top:200px;
+            border: 1px solid #fff;
+        }
+
+        #ol li{
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            border-bottom: 1px solid #fff;
+            color:#fff;
+
+        }
+        #ol li.current{
+            background-color:orangered;
+        }
+
+        #ul li{
+            width: 100%;
+            height: 100%;
+            font-size:30px;
+            text-align: center;
+            color:#fff;
+            /* background-color:orange; */
+
+        }
+    </style>
+</head>
+<body>
+    <!-- GPS -->
+    <ol id="ol">
+        <li class="current">第1层</li>
+        <li>第2层</li>
+        <li>第3层</li>
+        <li>第4层</li>
+        <li>第5层</li>
+    </ol>
+    <!-- 楼层 -->
+    <ul id="ul">
+        <li>第1层内容</li>
+        <li>第2层内容</li>
+        <li>第3层内容</li>
+        <li>第4层内容</li>
+        <li>第5层内容</li>
+    </ul>
+
+    <script type="text/javascript">
+
+        window.onload = function(){
+            var ol = $('ol');
+            var ul = $('ul');
+            var ulLis = ul.children;
+            var olLis = ol.children;
+            var isClick = false;
+
+            //上色
+            var colorArr = ['red','green','blue','purple','yellow'];
+            for(var i = 0; i<colorArr.length;i++){
+                ulLis[i].style.backgroundColor = colorArr[i];
+            }
+
+            //监听GPS的点击
+            for (var j = 0; j < olLis.length; j++) {
+                (function(j){
+                    olLis[j].onmousedown = function(){
+
+                        isClick = true;
+
+                        for (var i = 0; i < olLis.length; i++) {
+                            olLis[i].className = '';
+                        }
+                        this.className = 'current';
+
+                        //内容滚动起来
+
+                        buffer(document.body,{"scrollTop": j * client().height},function(){
+                            isClick = false;
+                        });
+                        buffer(document.documentElement,{"scrollTop": j * client().height},function(){
+                            isClick = false;
+                        });
+                    }
+                })(j)
+            };
+
+            //监听窗口滚动
+            window.onscroll = function(){
+                if(!isClick){
+                    //获取滚动产生高度
+                    var roll = Math.ceil(scroll().top);
+
+                    for (var i = 0; i < olLis.length; i++) {
+
+                         if(roll >= ulLis[i].offsetTop){
+                            for (var j = 0; j < olLis.length; j++) {
+                                olLis[j].className = '';
+                            }
+                            olLis[i].className = 'current';
+                         }
+                    }
+
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function scroll() {
+            if(window.pageYOffset !== null){
+                return {
+                    top: window.pageYOffset,
+                    left: window.pageXOffset
+                }
+            }else if(document.compatMode === "CSS1Compat"){ // W3C
+                return {
+                    top: document.documentElement.scrollTop,
+                    left: document.documentElement.scrollLeft
+                }
+            }
+
+            return {
+                top: document.body.scrollTop,
+                left: document.body.scrollLeft
+            }
+        }
+
+        function client() {
+            if(window.innerWidth){ // ie9+ 最新的浏览器
+                return {
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                }
+            }else if(document.compatMode === "CSS1Compat"){ // W3C
+                return {
+                    width: document.documentElement.clientWidth,
+                    height: document.documentElement.clientHeight
+                }
+            }
+
+            return {
+                width: document.body.clientWidth,
+                height: document.body.clientHeight
+            }
+        }
+
+
+        function $(id){
+            if(typeof id == 'string'){
+                return document.getElementById(id);
+            }else{
+                return null;
+            }
+        }
+
+
+        function getCSSAttrValue(obj, attr) {
+            if(obj.currentStyle){ // IE 和 opera
+                return obj.currentStyle[attr];
+            }else {
+                return window.getComputedStyle(obj, null)[attr];
+            }
+        }
+
+        function buffer(obj, json, fn) {
+            // 1.1 清除定时器
+            clearInterval(obj.timer);
+
+            // 1.2 设置定时器
+            var begin = 0, target = 0, speed = 0;
+            obj.timer = setInterval(function () {
+                // 1.3.0 旗帜
+                var flag = true;
+                for(var k in json){
+                    // 1.3 获取初始值
+                    if("opacity" === k){ // 透明度
+                        begin =  Math.round(parseFloat(getCSSAttrValue(obj, k)) * 100) || 100;
+                        target = parseInt(json[k] * 100);
+                    }else if("scrollTop" === k){
+                        begin = Math.ceil(obj.scrollTop);
+                        target = parseInt(json[k]);
+                    }else { // 其他情况
+                        begin = parseInt(getCSSAttrValue(obj, k)) || 0;
+                        target = parseInt(json[k]);
+                    }
+
+                    // 1.4 求出步长
+                    speed = (target - begin) * 0.2;
+
+                    // 1.5 判断是否向上取整
+                    speed = (target > begin) ? Math.ceil(speed) : Math.floor(speed);
+
+                    // 1.6 动起来
+                    if("opacity" === k){ // 透明度
+                        // w3c的浏览器
+                        obj.style.opacity = (begin + speed) / 100;
+                        // ie 浏览器
+                        obj.style.filter = 'alpha(opacity:' + (begin + speed) +')';
+                    }else if("scrollTop" === k){
+                        obj.scrollTop = begin + speed ; //scrollTop不要px
+                    }else {
+                        obj.style[k] = begin + speed + "px";
+                    }
+
+                    // 1.5 判断
+                    if(begin !== target){
+                        flag = false;
+                    }
+                }
+
+                // 1.3 清除定时器
+                if(flag){
+                    clearInterval(obj.timer);
+
+                    console.log(fn);
+
+                    // 判断有没有回调函数
+                    if(fn){
+                        fn();
+                    }
+                }
+            }, 20);
+        }
+    </script>
+</body>
+</html>

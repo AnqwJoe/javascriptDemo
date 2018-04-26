@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        /* *{
+            margin: 0;
+            padding: 0;
+        } */
+        .warp{
+            position: relative;
+            font-family: '微软雅黑';
+            width: 200px;
+            left: 50px;
+            top: 50px;
+        }
+        ul{
+            padding:15px 0;
+            margin:9px;
+            list-style: none;
+            color:#fff;
+            border-right-width:0;
+            background: #6c6669;
+        }
+        li{
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            padding-left:12px;
+            cursor: pointer;
+            font-size: 14px;
+            position: relative;
+
+        }
+        li.active{
+            background: #999395;
+
+        }
+        li span:hover{
+            color:#c81623;
+        }
+        .none{
+            display: none;
+
+        }
+
+        #sub{
+            width: 600px;
+            position: absolute;
+            border: 1px solid #f7f7f7;
+            background: #f7f7f7;
+            box-shadow:2px 0 5px rgba(0, 0, 0, 0.3);
+            left: 200px;
+            top: 0px;
+            box-sizing:border-box;
+            margin:0;
+            padding:10px;
+        }
+
+        .sub-content a{
+            font-size: 12px;
+            color:#666;
+            text-decoration: none;
+
+        }
+        .sub-content dd a{
+            border-left:1px solid #e0e0e0;
+            padding: 0 10px;
+            margin: 4px 0;
+        }
+        .sub-content dl{
+            overflow: hidden;
+
+        }
+
+        .sub-content dt{
+            float: left;
+            width: 70px;
+            font-weight: bold;
+            clear: left;
+            position: relative;
+
+        }
+
+        .sub-content dd{
+            float: left;
+            margin-left: 5px;
+            border-top: 1px solid #eee;
+            margin-bottom: 5px;
+        }
+        .sub-content dt i{
+            width: 4px;
+            height: 14px;
+            font: 400 9px/14px consolas;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="warp">
+        <ul>
+            <li data-id="a"><span>常用电器</span></li>
+            <li data-id="b"><span>手机 / 运营商 / 数码</span></li>
+            <li data-id="c"><span>电脑办公</span></li>
+            <li data-id="d"><span>家居 / 家装 / 厨具</span></li>
+            <li data-id="e"><span>男装 / 女装 / 童装</span></li>
+            <li data-id="f"><span>电脑办公</span></li>
+            <li data-id="g"><span>家居 / 家装 / 厨具</span></li>
+            <li data-id="h"><span>男装 / 女装 / 童装</span></li>
+            <li data-id="i"><span>电脑办公</span></li>
+            <li data-id="j"><span>家居 / 家装 / 厨具</span></li>
+            <li data-id="k"><span>男装 / 女装 / 童装</span></li>
+            <li data-id="l"><span>医药保健</span></li>
+        </ul>
+        <div id="sub" class="">
+            <div id="a" class="sub-content">
+                <dl>
+                    <dt>
+                        <a href="#">电视<i>&gt;</i></a>
+                    </dt>
+                    <dd>
+                        <a href="#">合资品牌</a>
+                        <a href="#">国产品牌</a>
+                        <a href="#">互联网品牌</a>
+                        <a href="#">进口品牌</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a href="#">电视<i>&gt;</i></a>
+                    </dt>
+                    <dd>
+                        <a href="#">合资品牌</a>
+                        <a href="#">国产品牌</a>
+                        <a href="#">互联网品牌</a>
+                        <a href="#">进口品牌</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a href="#">电视<i>&gt;</i></a>
+                    </dt>
+                    <dd>
+                        <a href="#">合资品牌</a>
+                        <a href="#">国产品牌</a>
+                        <a href="#">互联网品牌</a>
+                        <a href="#">进口品牌</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a href="#">电视<i>&gt;</i></a>
+                    </dt>
+                    <dd>
+                        <a href="#">合资品牌</a>
+                        <a href="#">国产品牌</a>
+                        <a href="#">互联网品牌</a>
+                        <a href="#">进口品牌</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a href="#">电视<i>&gt;</i></a>
+                    </dt>
+                    <dd>
+                        <a href="#">合资品牌</a>
+                        <a href="#">国产品牌</a>
+                        <a href="#">互联网品牌</a>
+                        <a href="#">进口品牌</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a href="#">电视<i>&gt;</i></a>
+                    </dt>
+                    <dd>
+                        <a href="#">合资品牌</a>
+                        <a href="#">国产品牌</a>
+                        <a href="#">互联网品牌</a>
+                        <a href="#">进口品牌</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a href="#">电视<i>&gt;</i></a>
+                    </dt>
+                    <dd>
+                        <a href="#">合资品牌</a>
+                        <a href="#">国产品牌</a>
+                        <a href="#">互联网品牌</a>
+                        <a href="#">进口品牌</a>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>
+                        <a href="#">电视<i>&gt;</i></a>
+                    </dt>
+                    <dd>
+                        <a href="#">合资品牌</a>
+                        <a href="#">国产品牌</a>
+                        <a href="#">互联网品牌</a>
+                        <a href="#">进口品牌</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
